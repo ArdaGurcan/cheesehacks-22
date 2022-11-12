@@ -144,6 +144,8 @@ gun.on("auth", function () {
 });
 
 
+
+
 function switchTo1() {
     removeActive();
     hideAll();
