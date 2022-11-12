@@ -63,7 +63,7 @@ $("#receiver").change( function (e) {
     channelName = user1 < user2 ? user1 + user2 : user2 + user1;
     
     // Pull up all messages in channel
-    $("ul")[0].innerHTML = "";
+    $("ul#messages")[0].innerHTML = "";
     gun.get(channelName).map().once(Li);
 });
 
@@ -95,7 +95,7 @@ function Li(say, id) {
     // If li element with messageID doesn't exist 
     let li = $("#" + id).get(0) 
     // Add message to ul
-    || $("<li>").attr("id", id).appendTo("ul");
+    || $("<li>").attr("id", id).appendTo("ul#messages");
     $(li).text(say);
 }
 
