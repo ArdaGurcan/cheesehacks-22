@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, getDocs, addDoc, getDoc, updateDoc } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
@@ -15,40 +15,47 @@ const firebaseConfig = {
 };
 initializeApp(firebaseConfig);
 const db = getFirestore();
-const colRef = collection(db, "Users")
+const userRef = collection(db, "Users")
 
 getGraphData()
+
 function getData(snapshot) {
   let nodes = []
   let links = []
 
   snapshot.docs.forEach((doc) => {
-    let user = { name: doc.data().name }
+    let user = { name: doc.data().name } // user format
     nodes.push(user)
     doc.data().friends.forEach((friend) => {
-      let link = {target: friend, source: doc.data().name, strength: 1}
+      let link = {target: friend, source: doc.data().name, strength: 1} // link format
       links.push(link)
     })
   })
   return [nodes, links]
-  // console.log(nodes)
-  // console.log(links)
 }
 
 function getGraphData() {
   let nodes = []
   let links = []
-  getDocs(colRef)// returns a promise
+  getDocs(userRef)// returns a promise
     .then((snapshot) => {
-      let data = getData(snapshot);
+      let data = getData(snapshot); // generate links and nodes
       nodes = data[0]
       links = data[1]
+      // return something later or something like that
+      //DEBUGGING
+      // console.log(nodes)
+      // console.log(links)
     })
-    .catch(err => {
+    .catch(err => { // If everything goes wrong
       console.log(err.message)
     })
 }
 
-
-
+function addUser(name) {
+  addDoc(userRef, {
+    name: name,
+    friends: [],
+  })
+}
 
