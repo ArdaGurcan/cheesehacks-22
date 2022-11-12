@@ -136,13 +136,19 @@ function getfriendCoordinates(name) {
         doc.data().friends.forEach((friend) => {
             snapshot.docs.forEach((docFriend) => {
               if(docFriend.data().name == friend) {
-                let friendcoords = {name: friend, longitude: docFriend.data().coordinates.longitude, latitude: docFriend.data().coordinates.latitude }
+                let friendcoords = {
+                  name: friend,
+                  longitude: docFriend.data().coordinates.longitude,
+                  latitude: docFriend.data().coordinates.latitude
+                }
+
                 friends.push(friendcoords)
               }
             })
         })
       }
     })
+      // console.log(friends)
       return friends
   })
 }
