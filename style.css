@@ -1,6 +1,6 @@
 :root {
-  --fg-gradient: -80deg, #12c2e9 -10% , #c471ed 20%, #f64f59;
-  --bg-gradient: to top,#ece9e6, #ffffff;
+  --fg-gradient: -80deg, #12c2e9 -10%, #c471ed 20%, #f64f59;
+  --bg-gradient: to top, #ece9e6, #ffffff;
 
 }
 
@@ -17,16 +17,23 @@
   display: block;
 }
 
-.fa {
+.is-large > .fa  {
   font-size: 3rem;
 }
 
 section {
   height: 100%;
-  aspect-ratio: 9/16;
+  /* aspect-ratio: 9/16; */
   margin: auto;
 }
 
+.tile.is-parent {
+  padding: 0 !important; 
+}
+.tile {
+
+  border-radius: 0 !important;
+}
 body {
 
   background-color: black;
@@ -60,26 +67,57 @@ body {
   background: linear-gradient(var(--fg-gradient)) !important;
 }
 
-i,
+.search {
+  margin: 0 0 0 0;
+  margin-bottom: 0 !important;
+  position: relative;
+
+}
+
+.button {
+  background: linear-gradient(var(--fg-gradient)) !important;
+  background: -moz-linear-gradient(var(--fg-gradient)) !important;
+  background: -webkit-linear-gradient(var(--fg-gradient)) !important;
+  color: whitesmoke;
+}
+
+.button:hover {
+  color: gainsboro;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.307) 0 0);
+}
+
+.search>.control>* {
+  border-radius: 0;
+  border-top-width: 0;
+  border-right-width: 0;
+}
+
+.tab-icon>i,
 h1 {
   background: linear-gradient(var(--fg-gradient));
-
   background: -moz-linear-gradient(var(--fg-gradient));
-
   background: -webkit-linear-gradient(var(--fg-gradient));
-
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 section {
   background: linear-gradient(var(--bg-gradient)) !important;
-
   background: -moz-linear-gradient(var(--bg-gradient));
-
   background: -webkit-linear-gradient(var(--bg-gradient));
 }
 
 #tab-1-content {
   height: 100%;
+}
+
+.result {
+  border-radius: 0;
+  margin: 0;
+  margin-bottom: 0 !important;
+}
+.results {
+  height: 84.1vh;
+  overflow: auto;
+  overscroll-behavior-y: contain;
 }
