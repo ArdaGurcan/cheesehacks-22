@@ -175,8 +175,6 @@ function hideAll() {
 }
 
 $(document).ready(() => {
-
-    console.log(nodes);
     nodes.forEach(function(node) {
         $(".results")[0].innerHTML += '<div class="box result">' +
         '<button class="add-friend is-info button is-right">' +
