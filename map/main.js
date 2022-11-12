@@ -10,7 +10,7 @@ const view = new View({
   zoom: 15,
 })
 
-const feature = new Feature(new Point([0, 0]));
+let vectorsource = new VectorSource();
 
 const map = new Map({
   target: 'map',
@@ -18,18 +18,38 @@ const map = new Map({
   layers: [
     new TileLayer({
       source: new OSM(),
-    }),
-    new VectorLayer({
-      source: new VectorSource({
-        features: [feature],
-      }),
-      style: {
-        'circle-radius': 9,
-        'circle-fill-color': 'red',
-      },
-    }),
+    })
   ],
 });
+
+const proj = view.getProjection();
+
+// returns a VectorSource with all the friends on it
+function drawFriends(friends) {
+  const vectorsource = new VectorSource();
+  for (let f in friends) {
+    const lat = friends[f]["latitude"];
+    const long = friends[f]["longitude"];
+    vectorsource.addFeature(new Feature(new Point(fromLonLat([lat, long], proj))));
+  }
+  return vectorsource;
+}
+
+const friends = [{name: "Arda", longitude: 33, latitude: -13}, {name: "Kyle", longitude: 41, latitude: 2}, 
+{name: "Chris", longitude: -15, latitude: 80}]
+drawFriends(friends);
+vectorsource = drawFriends(friends);
+
+self = new Feature(new Point([0, 0]));
+vectorsource.addFeature(self);
+
+map.addLayer(new VectorLayer({
+  source: vectorsource,
+  style: {
+    'circle-radius': 9,
+    'circle-fill-color': 'red',
+  }
+}))
 
 const geolocation = new Geolocation({
   tracking: true,
@@ -47,7 +67,7 @@ console.log(geolocation.getPosition());
 
 geolocation.on('change:position', function () {
   const coordinates = geolocation.getPosition();
-  feature.setGeometry(coordinates ? new Point(coordinates) : null);
+  self.setGeometry(coordinates ? new Point(coordinates) : null);
   view.setCenter(coordinates);
 });
 
