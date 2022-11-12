@@ -336,11 +336,11 @@ var nodeElements = svg
 
   // set back
   .on('mouseleave', function() {
-  d3.select( this )
-      .transition()
-      .attr("r", 10)
-      .attr("fill", getNodeColor) 
-  });
+    d3.select( this )
+        .transition()
+        .attr("r", 10)
+        .attr("fill", getNodeColor) 
+    });
 
 simulation.nodes(nodes).on("tick", () => {
   nodeElements
