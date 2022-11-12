@@ -18,7 +18,7 @@ $("#msg").hide();
 
 // On sign up
 $("#up").on("click", function (e) {
-
+    addUser("asd")
     // Create user with #alias as username and #pass as password
     user.create($("#alias").val(), $("#pass").val());
 
