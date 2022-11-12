@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, getDoc, updateDoc } from 'firebase/firestore'
+import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
@@ -18,6 +18,7 @@ const db = getFirestore();
 const userRef = collection(db, "Users")
 
 getGraphData()
+addFriend("A", "Bob")
 
 function getData(snapshot) {
   let nodes = []
@@ -59,3 +60,22 @@ function addUser(name) {
   })
 }
 
+function addFriend(name, friend) {
+  let id = ""
+  let friends = []
+  getDocs(userRef)
+    .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      if(doc.data().name == name) {
+        id = doc.id
+        friends = doc.data().friends
+        friends.push(friend)
+      }
+      })
+    let docRef = doc(db, 'Users', id)
+
+    updateDoc(docRef, {
+      friends: friends
+    })
+  })
+}
