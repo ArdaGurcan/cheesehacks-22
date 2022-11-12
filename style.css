@@ -122,3 +122,8 @@ section {
   overflow: auto;
   overscroll-behavior-y: contain;
 }
+
+.add-friend {
+  position: absolute; 
+  right: 1rem;
+}
