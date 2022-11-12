@@ -18,12 +18,20 @@ $("#msg").hide();
 
 // On sign up
 $("#up").on("click", function (e) {
-    addUser("asd")
     // Create user with #alias as username and #pass as password
-    user.create($("#alias").val(), $("#pass").val());
+    user.create($("#alias").val(), $("#pass").val(), (ack) => {
+        if (ack.ok === 0) {
+            addUser($("#alias").val());
+            console.log($("#alias").val() + ": " + $("#pass").val() + " signed up");
+        }
+        else {
+            $("#error").text(ack.err)
+        }
 
+    });
+    
+    // console.log
     // Log sign-up to console
-    console.log($("#alias").val() + ": " + $("#pass").val() + " signed up");
 });
 
 // On sign in
