@@ -17,10 +17,12 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 const userRef = collection(db, "Users")
 
-addUser("Kyle")
-addFriend("Kyle", "Bob")
-updateCoordinates("Kyle", 1,1)
-getCoordinates("Kyle")
+// addUser("Bob")
+// updateCoordinates("Bob", 10, 10)
+// getCoordinates("Bob")
+// addFriend("Bob", "Kyle")
+// addFriend("Bob", "Arda")
+getfriendCoordinates("Bob")
 
 function getData(snapshot) {
   let nodes = []
@@ -63,6 +65,19 @@ function addUser(name) {
   })
 }
 
+function getfriends(name) {
+  let friends = []
+  getDocs(userRef)
+    .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      if(doc.data().name == name) {
+        id = doc.id
+        friends = doc.data().friends
+        return friends
+      }
+    })
+  })
+}
 function addFriend(name, friend) {
   let id = ""
   let friends = []
@@ -109,5 +124,31 @@ function getCoordinates(name) {
           return [doc.data().coordinates.longitude, doc.data().coordinates.latitude]
       }
     })
+  })
+}
+
+function getfriendCoordinates(name) {
+  let friends = []
+  getDocs(userRef)
+    .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      if(doc.data().name == name) {
+        doc.data().friends.forEach((friend) => {
+            snapshot.docs.forEach((docFriend) => {
+              if(docFriend.data().name == friend) {
+                let friendcoords = {
+                  name: friend,
+                  longitude: docFriend.data().coordinates.longitude,
+                  latitude: docFriend.data().coordinates.latitude
+                }
+
+                friends.push(friendcoords)
+              }
+            })
+        })
+      }
+    })
+      // console.log(friends)
+      return friends
   })
 }
