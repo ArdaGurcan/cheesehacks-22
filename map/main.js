@@ -1,4 +1,4 @@
-import {Feature, Map, Overlay, View} from 'ol/index';
+import {Feature, Map, Overlay, View} from 'ol';
 import {OSM, Vector as VectorSource} from 'ol/source';
 import {Point} from 'ol/geom';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
