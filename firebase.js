@@ -33,7 +33,7 @@ window.getFriendCoordinates = getFriendCoordinates
 // getCoordinates("Bob")
 // addFriend("Bob", "Kyle")
 // addFriend("Bob", "Arda")
-getfriendCoordinates("Bob")
+// getfriendCoordinates("Bob")
 
 function getData(snapshot) {
   let nodes = []
@@ -75,8 +75,6 @@ function addUser(name) {
     coordinates: new GeoPoint(0,0)
   })
 }
-
-
 
 function getFriends(name) {
   let friends = []
