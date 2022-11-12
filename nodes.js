@@ -179,7 +179,16 @@ var links = [
     },
 ];
 
+let selected = null
 $("#person-panel").hide()
+
+$("#add-friend-from-graph").on("click" , ()=>{
+    if (selected != null) {
+
+        addFriend(user1, selected.name)
+        console.log("added "+ selected.name + " as friend to " + user1);
+    }
+})
 
 function getNeighbors(node) {
     return links.reduce(
@@ -224,7 +233,7 @@ svg.attr("width", "100%").attr("height", "100%");
 let height = window.innerHeight;
 let width = window.innerWidth;
 
-let username = "Kyle";
+// let user1 = "";
 // simulation setup with all forces
 var linkForce = d3
     .forceLink()
@@ -244,7 +253,7 @@ var simulation = d3
 var dragDrop = d3
     .drag()
     .on("start", function (node) {
-        if (username == node.name) {
+        if (user1 == node.name) {
             node.fx = width / 2;
             node.fy = height / 2;
         } else {
@@ -254,7 +263,7 @@ var dragDrop = d3
     })
     .on("drag", function (node) {
         simulation.alphaTarget(0.7).restart();
-        if (username == node.name) {
+        if (user1 == node.name) {
             node.fx = width / 2;
             node.fy = height / 2;
         } else {
@@ -275,13 +284,13 @@ function selectNode(selectedNode) {
     var neighbors = getNeighbors(selectedNode);
 
     nodeElements.attr("cx", function (node) {
-        if (node.name == username) {
+        if (node.name == user1) {
             return width / 2;
         }
         return node.x;
     });
     nodeElements.attr("cy", function (node) {
-        if (node.name == username) {
+        if (node.name == user1) {
             return height / 2;
         }
         return node.y;
@@ -299,6 +308,7 @@ function selectNode(selectedNode) {
     simulation.force("link").links(links);
     $("#panel-person-name").text(selectedNode.name)
     $("#person-panel").show()
+    selected = selectedNodex;
 }
 
 var linkElements = svg
@@ -357,47 +367,48 @@ var nodeElements = svg
 simulation.nodes(nodes).on("tick", () => {
     nodeElements
         .attr("cx", function (node) {
-            if (node.name == username)
+            if (node.name == user1)
                 return width / 2;
             return node.x;
         })
         .attr("cy", function (node) {
-            if (node.name == username)
+            if (node.name == user1)
                 return height / 2;
             return node.y;
         });
     textElements
         .attr("x", function (node) {
-            if (node.name == username)
+            if (node.name == user1)
                 return width / 2;
             return node.x;
         })
         .attr("y", function (node) {
-            if (node.name == username)
+            if (node.name == user1)
                 return height / 2;
             return node.y;
         });
     linkElements
         .attr("x1", function (link) {
-            if (link.source.name == username)
+            if (link.source.name == user1)
                 return width / 2;
             return link.source.x;
         })
         .attr("y1", function (link) {
-            if (link.source.name == username)
+            if (link.source.name == user1)
                 return height / 2;
             return link.source.y;
         })
         .attr("x2", function (link) {
-            if (link.target.name == username)
+            if (link.target.name == user1)
                 return width / 2;
             return link.target.x;
         })
         .attr("y2", function (link) {
-            if (link.target.name == username)
+            if (link.target.name == user1)
                 return height / 2;
             return link.target.y;
         });
 });
 
 simulation.force("link").links(links);
+

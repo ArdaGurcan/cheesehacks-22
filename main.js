@@ -10,6 +10,7 @@ let user = gun.user();
 // Define usernames and channel id
 let user1 = null;
 let user2 = null;
+let authenticated = false;
 
 let channelName = null;
 
@@ -18,12 +19,20 @@ $("#msg").hide();
 
 // On sign up
 $("#up").on("click", function (e) {
-
     // Create user with #alias as username and #pass as password
-    user.create($("#alias").val(), $("#pass").val());
+    user.create($("#alias").val(), $("#pass").val(), (ack) => {
+        if (ack.ok === 0) {
+            addUser($("#alias").val());
+            console.log($("#alias").val() + ": " + $("#pass").val() + " signed up");
+        }
+        else {
+            $("#error").text(ack.err)
+        }
 
+    });
+    
+    // console.log
     // Log sign-up to console
-    console.log($("#alias").val() + ": " + $("#pass").val() + " signed up");
 });
 
 // On sign in
@@ -108,7 +117,7 @@ function Dropdown(item, id){
     channelName = user1 < user2 ? user1 + user2 : user2 + user1;
 }
 
-// On authenticated (all coosmetics)
+// On authenticated (all cosmetics)
 gun.on("auth", function () {
     
     // Set user1's name
@@ -128,8 +137,13 @@ gun.on("auth", function () {
     
     // Log authed to console
     console.log("authenticated");
+    
+    authenticated = true;
 
+    addFriendButtons();
 });
+
+
 
 
 function switchTo1() {
@@ -140,6 +154,9 @@ function switchTo1() {
 }
 
 function switchTo2() {
+    if(!authenticated) {
+        return;
+    }
     removeActive();
     hideAll();
     $("#tab-2").addClass("is-active");
@@ -174,17 +191,11 @@ function hideAll() {
     $("#tab-4-content").addClass("is-hidden");
 }
 
-$(document).ready(() => {
-    let numResults = 0;
-
-    for(let i = 0; i < numResults; i++) {
+function addFriendButtons() {
+    nodes.forEach(function(node) {
         $(".results")[0].innerHTML += '<div class="box result">' +
-        '<button class="add-friend is-info button is-right">' +
-        'Add as Friend</button>arda</div>';
-    }
-
-    // you haven't logged in!
-    if(user1 == null) {
-        $(".results")[0].innerHTML += '<p>Login first to add a friend!</p>';
-    }
-});
+        '<button class="add-friend is-info button is-right"' + 
+        'onclick=addFriend("' + user1 + '","' + node.name +'")>' +
+        'Add as Friend</button>' + node.name + '</div>';
+    });
+}

@@ -1,10 +1,12 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc, GeoPoint } from 'firebase/firestore'
+// import { initializeApp } from "firebase/app";
+// import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc, GeoPoint } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js'
 
+import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc, GeoPoint } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js'
 const firebaseConfig = {
   apiKey: "AIzaSyDPJ40d-kw7sPJHgqLpioppem3iSe-aDSQ",
   authDomain: "social-ec643.firebaseapp.com",
@@ -17,12 +19,21 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 const userRef = collection(db, "Users")
 
+window.getData = getData
+window.getGraphData = getGraphData
+window.addUser = addUser
+window.getFriends = getFriends
+window.addFriend = addFriend
+window.updateCoordinates =updateCoordinates
+window.getCoordinates = getCoordinates
+window.getFriendCoordinates = getFriendCoordinates
+
 // addUser("Bob")
 // updateCoordinates("Bob", 10, 10)
 // getCoordinates("Bob")
 // addFriend("Bob", "Kyle")
 // addFriend("Bob", "Arda")
-getfriendCoordinates("Bob")
+// getfriendCoordinates("Bob")
 
 function getData(snapshot) {
   let nodes = []
@@ -65,7 +76,7 @@ function addUser(name) {
   })
 }
 
-function getfriends(name) {
+function getFriends(name) {
   let friends = []
   getDocs(userRef)
     .then((snapshot) => {
@@ -127,7 +138,7 @@ function getCoordinates(name) {
   })
 }
 
-function getfriendCoordinates(name) {
+function getFriendCoordinates(name) {
   let friends = []
   getDocs(userRef)
     .then((snapshot) => {
