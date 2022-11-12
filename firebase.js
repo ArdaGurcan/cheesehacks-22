@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc } from 'firebase/firestore'
+import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc, GeoPoint } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
@@ -17,8 +17,10 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 const userRef = collection(db, "Users")
 
-getGraphData()
-addFriend("A", "Bob")
+addUser("Kyle")
+addFriend("Kyle", "Bob")
+updateCoordinates("Kyle", 1,1)
+getCoordinates("Kyle")
 
 function getData(snapshot) {
   let nodes = []
@@ -57,6 +59,7 @@ function addUser(name) {
   addDoc(userRef, {
     name: name,
     friends: [],
+    coordinates: new GeoPoint(0,0)
   })
 }
 
@@ -76,6 +79,35 @@ function addFriend(name, friend) {
 
     updateDoc(docRef, {
       friends: friends
+    })
+  })
+}
+
+function updateCoordinates(name, x, y) {
+  let id = ""
+  getDocs(userRef)
+    .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      if(doc.data().name == name) {
+        id = doc.id
+      }
+      })
+    let docRef = doc(db, 'Users', id)
+
+    updateDoc(docRef, {
+        coordinates: new GeoPoint(x, y)
+    })
+  })
+}
+
+function getCoordinates(name) {
+  getDocs(userRef)
+    .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      if(doc.data().name == name) {
+          // console.log([doc.data().coordinates.longitude, doc.data().coordinates.latitude])
+          return [doc.data().coordinates.longitude, doc.data().coordinates.latitude]
+      }
     })
   })
 }
