@@ -175,16 +175,16 @@ function hideAll() {
 }
 
 $(document).ready(() => {
-    let numResults = 0;
 
-    for(let i = 0; i < numResults; i++) {
+    console.log(nodes);
+    nodes.forEach(function(node) {
         $(".results")[0].innerHTML += '<div class="box result">' +
         '<button class="add-friend is-info button is-right">' +
-        'Add as Friend</button>arda</div>';
-    }
+        'Add as Friend</button>' + node.name + '</div>';
+    });
 
     // you haven't logged in!
-    if(user1 == null) {
-        $(".results")[0].innerHTML += '<p>Login first to add a friend!</p>';
-    }
+    // if(user1 == null) {
+    //     $(".results")[0].innerHTML += '<p>Login first to add a friend!</p>';
+    // }
 });
