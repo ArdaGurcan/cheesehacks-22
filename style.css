@@ -1,0 +1,85 @@
+:root {
+  --fg-gradient: -80deg, #12c2e9 -10% , #c471ed 20%, #f64f59;
+  --bg-gradient: to top,#ece9e6, #ffffff;
+
+}
+
+#tabs-with-content .tabs:not(:last-child) {
+  margin-bottom: 0;
+}
+
+#tabs-with-content .tab-content {
+  padding: 1rem;
+  display: none;
+}
+
+#tabs-with-content .tab-content.is-active {
+  display: block;
+}
+
+.fa {
+  font-size: 3rem;
+}
+
+section {
+  height: 100%;
+  aspect-ratio: 9/16;
+  margin: auto;
+}
+
+body {
+
+  background-color: black;
+
+}
+
+.tabs.is-toggle a {
+  border-color: #efefef !important;
+  /* border-width: 0.15rem 0 0 0 !important; */
+  border-radius: 0 !important;
+}
+
+.tabs.is-toggle li.is-active a {
+  border-color: #e7e7e7 !important;
+  /* border-width: 0.15rem 0 0 0 !important; */
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.tabs {
+  background: linear-gradient(0deg, rgb(214, 213, 209) 0%, hsla(60, 100%, 97%, 1) 100%) !important;
+}
+
+.hero.is-light .tabs.is-toggle a:hover {
+  background-color: rgba(140, 140, 140, 0.1) !important;
+  border-color: #e7e7e7 !important;
+  /* border-width: 0.2rem 0 0 0 !important; */
+}
+
+.gradient-container {
+  padding: 0.10rem 0 0 0 !important;
+  background: linear-gradient(var(--fg-gradient)) !important;
+}
+
+i,
+h1 {
+  background: linear-gradient(var(--fg-gradient));
+
+  background: -moz-linear-gradient(var(--fg-gradient));
+
+  background: -webkit-linear-gradient(var(--fg-gradient));
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+section {
+  background: linear-gradient(var(--bg-gradient)) !important;
+
+  background: -moz-linear-gradient(var(--bg-gradient));
+
+  background: -webkit-linear-gradient(var(--bg-gradient));
+}
+
+#tab-1-content {
+  height: 100%;
+}

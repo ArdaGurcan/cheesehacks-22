@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- Import Bulma -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
+  <!-- Import Font Awesome 4.7.0 Icons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Import CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section class="hero is-fullheight is-light">
+    <div id="tab-1-content" height="100%">
+      <h1 class="title is-1" style="top: 0%;
+      left: 50%;
+      transform: translate(-50%, 0%); position: absolute; ">Your Graph</h1>
+
+      <svg width="100%" height="100%"></svg>
+    </div>
+    <div class="is-hidden" id="tab-2-content">
+      <h1 class="title is-1" style="text-align:center;">Here will be the contents of the "Search Friends" tab</h1>
+    </div>
+    <div class="is-hidden" id="tab-3-content">
+      <h1 class="title is-1" style="text-align:center;">Here will be the contents of the "Real Map" tab</h1>
+      <button onclick="getLocation()">Get Geolocation</button>
+      <p id="demo"></p>
+    </div>
+
+    <div class="gradient-container">
+      <div class="tabs is-toggle is-fullwidth is-large hero-foot">
+        <ul>
+          <li id="tab-1" class="is-active">
+            <a onClick="switchTo1()">
+              <span class="icon is-large"><i class="fa fa-link"></i></span>
+            </a>
+          </li>
+          <li id="tab-2">
+            <a onClick="switchTo2()">
+              <span class="icon is-large"><i class="fa fa-search"></i></span>
+            </a>
+          </li>
+          <li id="tab-3">
+            <a onClick="switchTo3()">
+              <span class="icon is-large"><i class="fa fa-map-marker"></i></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Import JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Import JS code -->
+  <script src="main.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="nodes.js"></script>
+  <script src="fire.js"></script>
+  <script src="geolocation.js"></script>
+  
+</body>
+
+</html>
