@@ -19,6 +19,15 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 const userRef = collection(db, "Users")
 
+window.getData = getData
+window.getGraphData = getGraphData
+window.addUser = addUser
+window.getFriends = getFriends
+window.addFriend = addFriend
+window.updateCoordinates =updateCoordinates
+window.getCoordinates = getCoordinates
+window.getFriendCoordinates = getFriendCoordinates
+
 // addUser("Bob")
 // updateCoordinates("Bob", 10, 10)
 // getCoordinates("Bob")
@@ -67,10 +76,9 @@ function addUser(name) {
   })
 }
 
-window.addUser = addUser;
 
 
-function getfriends(name) {
+function getFriends(name) {
   let friends = []
   getDocs(userRef)
     .then((snapshot) => {
@@ -132,7 +140,7 @@ function getCoordinates(name) {
   })
 }
 
-function getfriendCoordinates(name) {
+function getFriendCoordinates(name) {
   let friends = []
   getDocs(userRef)
     .then((snapshot) => {
