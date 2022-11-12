@@ -184,7 +184,7 @@ $(document).ready(() => {
     }
 
     // you haven't logged in!
-    if(numResults == 0) {
+    if(user1 == null) {
         $(".results")[0].innerHTML += '<p>Login first to add a friend!</p>';
     }
 });
