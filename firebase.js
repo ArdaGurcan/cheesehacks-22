@@ -95,6 +95,16 @@ function getData(snapshot, name) {
    return nodes.find(a => a.name === name)
  })
 
+  links = links.reduce((acc, current) => {
+    const source = acc.find(item => item.source === current.source);
+    const target = acc.find(item => item.target === current.target);
+    if (!source || !target) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
+
   return [nodes, links]
 }
 
