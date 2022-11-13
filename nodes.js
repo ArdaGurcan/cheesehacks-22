@@ -182,7 +182,9 @@ var links = [
 
 let selected = null
 $("#person-panel").hide()
-
+$("#friend_search").on("input", ()=>{
+    getSearchResults()
+})
 $("#add-friend-from-graph").on("click" , ()=>{
     if (selected != null) {
 

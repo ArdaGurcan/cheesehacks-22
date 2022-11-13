@@ -14,6 +14,8 @@ let authenticated = false;
 
 let channelName = null;
 
+
+
 // All currently unusued fields
 $("#msg").hide();
 
