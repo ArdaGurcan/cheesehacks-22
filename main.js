@@ -142,7 +142,6 @@ function switchTo1() {
     if (!authenticated) {
         return
     }
-    setUserNode()
     centerUser()
     removeActive()
     hideAll()
@@ -194,6 +193,8 @@ function addFriendButtons() {
     nodes.forEach(function (node) {
         if (user1 !== node.name)
             getFriends(user1).then((e) => {
+                let alreadyFriends = e.indexOf(node.name) != -1;
+
                 $(".results")[0].innerHTML +=
                     '<div class="box result">' +
                     '<button class="add-friend is-info button is-right"' +
@@ -201,11 +202,11 @@ function addFriendButtons() {
                     user1 +
                     '","' +
                     node.name +
-                    '")>' +
+                    '")' +
+                    (alreadyFriends ? " disabled" : "") +
+                    ">" +
                     '<span class="icon is-medium"><i class="fa fa-' +
-                    (e.indexOf(node.name) == -1
-                        ? "plus-circle"
-                        : "check-circle") +
+                    (alreadyFriends ? "check-circle" : "plus-circle") +
                     '"></i></span></button>' +
                     node.name +
                     "</div>";
