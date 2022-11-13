@@ -222,7 +222,7 @@ function switchTo5(node) {
     $("#profile")[0].innerHTML +=
         '<figure id="profile-picture" class="image">' +
         '<img class="is-rounded" id="profile-photo"' +
-        'src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">' +
+        'src="' + getPfp(node) +'">' +
         '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(' + node + ', this);" style="display:none"></figure>';
 
     $("#profile")[0].innerHTML +=
@@ -265,7 +265,6 @@ function hideAll() {
 
 function getSearchResults() {
     // reset results
-    $(".results")[0].innerHTML = "";
 
     // get filter phrase from search bar
     var filter = $("#friend_search").val().toUpperCase();
@@ -276,6 +275,8 @@ function getSearchResults() {
     var containsFilter = [];
 
     getUsers().then((e) => {
+        $(".results")[0].innerHTML = "";
+
         console.log(e);
         e.forEach(function (node) {
             if (filter != null) {
@@ -294,7 +295,8 @@ function getSearchResults() {
             createFriendButton(node);
         });
         containsFilter.forEach(function (node) {
-            createFriendButton(node);
+            if(startsWithFilter.indexOf(node) == -1)
+                createFriendButton(node);
         });
     });
 }
