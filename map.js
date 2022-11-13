@@ -2,11 +2,13 @@ import {Feature, Map, Overlay, View} from 'ol';
 import {OSM, Vector as VectorSource} from 'ol/source';
 import {Point} from 'ol/geom';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
-import {fromLonLat, toLonLat} from 'ol/proj';
+import {addEquivalentTransforms, fromLonLat, toLonLat} from 'ol/proj';
 import Geolocation from 'ol/Geolocation';
 import Text from 'ol/style/Text';
 import {Circle, Fill, Style} from 'ol/style';
 import { createOrUpdateFromCoordinates } from 'ol/extent';
+
+import getFriends from '/firebase.js';
 
 const view = new View({
   center: [0, 0],
@@ -14,7 +16,7 @@ const view = new View({
 })
 
 let vectorsource = new VectorSource();
-
+console.log("fiusaif;auwh")
 const map = new Map({
   target: 'map',
   view: view,
@@ -53,10 +55,9 @@ function drawFriends(friends) {
   return vectorsource;
 }
 
-const friends = [{name: "Arda", longitude: 33, latitude: -13}, {name: "Kyle", longitude: 41, latitude: 2}, 
-{name: "Chris", longitude: -85, latitude: 23}]
-drawFriends(friends);
-vectorsource = drawFriends(friends);
+getFriends(window.user1).then((Array) => {
+  vectorsource = drawFriends(Array);
+});
 
 self = new Feature(new Point([0, 0]));
 vectorsource.addFeature(self);
