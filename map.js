@@ -74,14 +74,6 @@ window.ready = () => {
           drawFriends(array);
         });
 
-        // bad code
-        for (let feature in vectorsource.getFeatures()) {
-          feature.on('click', function (evt) {
-            console.log("click");
-            switchTo5("rachelle");
-          })
-        }
-
         self = new Feature(new Point([0, 0]));
         vectorsource.addFeature(self);
 
@@ -90,6 +82,14 @@ window.ready = () => {
                 source: vectorsource,
             })
         );
+
+        map.on('click', function (evt) {
+          if (map.hasFeatureAtPixel) {
+            console.log(map.getFeaturesAtPixel(evt.pixel))
+            var feature = map.getFeaturesAtPixel(evt.pixel)[0];
+            switchTo5(feature.getStyle().getText().getText());
+          }
+        });
 
         const geolocation = new Geolocation({
             tracking: true,
