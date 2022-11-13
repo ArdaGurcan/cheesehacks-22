@@ -9,6 +9,7 @@ import {Circle, Fill, Style} from 'ol/style';
 import { createOrUpdateFromCoordinates } from 'ol/extent';
 
 import getFriends from '/firebase.js';
+import updateCoordinates from '/firebase.js';
 
 const view = new View({
   center: [0, 0],
@@ -46,6 +47,7 @@ function styleFriend(name) {
 
 // returns a VectorSource with all the friends on it
 function drawFriends(friends) {
+  console.log(friends);
   const vectorsource = new VectorSource();
   for (let f in friends) {
     let feature = new Feature(new Point(fromLonLat([friends[f]["longitude"], friends[f]["latitude"]], proj)));
