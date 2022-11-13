@@ -108,6 +108,7 @@ function addFriend(name, friend) {
       friends: friends
     })
   })
+  console.log(friend + ' added as friend of ' + name);
 }
 
 function updateCoordinates(name, x, y) {
