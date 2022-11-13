@@ -218,9 +218,9 @@ function switchTo5(node) {
 
     $("#profile")[0].innerHTML +=
         '<figure id="profile-picture" class="image">' +
-        '<img class="is-rounded"' +
+        '<img class="is-rounded" id="profile-photo"' +
         'src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">' +
-        '<br><input type="file" id="my_file" style="display: none" ></figure>';
+        '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(this);" style="display:none"></figure>';
 
     $("#profile")[0].innerHTML +=
         '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
@@ -233,14 +233,16 @@ function switchTo5(node) {
     });;
     // display friends
     $("#friends-list")[0].innerHTML = "";
-    $("#friends-list")[0].innerHTML += '<p class="title">Friends:</p>';
+    $("#friends-list")[0].innerHTML += 
+        '<p class="title">Friends:</p>';
     getFriends(node).then((friends) => {
-        console.log(friends);
-        friends.forEach(function (friend) {
-            $("#friends-list")[0].innerHTML +=
-                '<p class="subtitle">' + friend + "</p>";
+        console.log(friends)
+        friends.forEach(function(friend) {
+            $("#friends-list")[0].innerHTML += 
+            '<p class="subtitle">' + friend + '</p>';
         });
-    });
+    })
+
 }
 
 function removeActive() {
@@ -263,7 +265,7 @@ function getSearchResults() {
 
     // get filter phrase from search bar
     var filter = $("#friend_search").val().toUpperCase();
-    console.log(filter);
+    console.log(filter)
 
     // filter and bucketize by (starts with filter), (contains filter)
     var startsWithFilter = [];

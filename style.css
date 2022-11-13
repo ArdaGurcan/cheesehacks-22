@@ -201,10 +201,10 @@ background-color: rgba(0, 116, 116, 0.1) !important;
   cursor: copy;
 }
 
-#profile-photo {
+/* #profile-photo {
   width: auto;
   aspect-ratio: 1/1;
-}
+} */
 
 .text-c {
   /* margin-top: 1rem; */
