@@ -203,6 +203,7 @@ function hideAll() {
     $("#tab-2-content").addClass("is-hidden");
     $("#tab-3-content").addClass("is-hidden");
     $("#tab-4-content").addClass("is-hidden");
+    $("#tab-5-content").addClass("is-hidden");
 }
 
 function getSearchResults() {
