@@ -8,11 +8,10 @@ import Text from "ol/style/Text";
 import { Circle, Fill, Style } from "ol/style";
 import { createOrUpdateFromCoordinates } from "ol/extent";
 
-import getFriends from "/firebase.js";
+import getFriendCoordinates from "/firebase.js";
 import updateCoordinates from "/firebase.js";
 
 let map;
-
 
 window.ready = () => {
     setTimeout(() => {
@@ -22,7 +21,6 @@ window.ready = () => {
         });
 
         let vectorsource = new VectorSource();
-        console.log("fiusaif;auwh");
         if(!map)
         map = new Map({
             target: "map",
@@ -53,8 +51,7 @@ window.ready = () => {
 
         // returns a VectorSource with all the friends on it
         function drawFriends(friends) {
-            console.log(friends);
-            const vectorsource = new VectorSource();
+            // let vectorsource = new VectorSource();
             for (let f in friends) {
                 let feature = new Feature(
                     new Point(
@@ -66,12 +63,15 @@ window.ready = () => {
                 );
                 feature.setStyle(styleFriend(friends[f]["name"]));
                 vectorsource.addFeature(feature);
+              
             }
-            return vectorsource;
+            console.log(vectorsource.getFeatures());
+            // return vectorsource;
         }
 
-        getFriends(window.user1).then((Array) => {
-            vectorsource = drawFriends(Array);
+        getFriendCoordinates(user1).then((array) => {
+          console.log(user1);
+          drawFriends(array);
         });
 
         self = new Feature(new Point([0, 0]));

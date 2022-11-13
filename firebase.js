@@ -132,7 +132,7 @@ function addUser(name) {
   })
 }
 
-export default async function getFriends(name) {
+async function getFriends(name) {
   let friends = []
   await getDocs(userRef)
     .then((snapshot) => {
@@ -197,7 +197,7 @@ async function getCoordinates(name) {
   return data
 }
 
-async function getFriendCoordinates(name) {
+export default async function getFriendCoordinates(name) {
   let friends = []
   await getDocs(userRef)
     .then((snapshot) => {
