@@ -191,10 +191,6 @@ $("#add-friend-from-graph").on("click" , ()=>{
     }
 })
 
-// function genGraphData() {
-//   getGraphData()
-// }
-
 function centerUser() {
   nodeElements.attr("cx", function (node) {
       if (node.name == user1) {
