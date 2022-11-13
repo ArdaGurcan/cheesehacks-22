@@ -188,7 +188,7 @@ $("#add-friend-from-graph").on("click" , ()=>{
 
         addFriend(user1, selected.name).then(() => {
             addFriendButtons()
-
+            auth()
         })
         console.log("added "+ selected.name + " as friend to " + user1);
         $("#add-friend-from-graph").prop("disabled", true)
