@@ -314,6 +314,10 @@ select .select option:checked {
   transition: all .6s ease-in-out;
 }
 
+form#said {
+  margin: 0 !important;
+}
+
 #sign {
   margin: 1.25rem;
 }
