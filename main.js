@@ -216,6 +216,7 @@ function switchTo5(node) {
         user1 +
         '</p>';
 }
+window.switchTo5 = switchTo5;
 
 function removeActive() {
     $("li").each(function () {

@@ -17,7 +17,7 @@ window.ready = () => {
     setTimeout(() => {
         let view = new View({
             center: [-89, 43],
-            zoom: 15,
+            zoom: 20,
         });
 
         let vectorsource = new VectorSource();
@@ -74,6 +74,14 @@ window.ready = () => {
           drawFriends(array);
         });
 
+        // bad code
+        for (let feature in vectorsource.getFeatures()) {
+          feature.on('click', function (evt) {
+            console.log("click");
+            switchTo5("rachelle");
+          })
+        }
+
         self = new Feature(new Point([0, 0]));
         vectorsource.addFeature(self);
 
@@ -97,6 +105,12 @@ window.ready = () => {
 
         function getLocation() {
             return toLonLat(geolocation.getPosition());
+        }
+
+        function redrawMap() {
+          for (let f in vectorsource.getFeatures()) {
+
+          }
         }
 
         geolocation.on("change:position", function () {
