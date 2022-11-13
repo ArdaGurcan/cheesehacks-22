@@ -1,3 +1,5 @@
+// import getFriendCoordinates from "./firebase";
+
 // Define gun instance
 let gun = Gun([
     "http://77.68.15.151:1234/gun",
@@ -11,6 +13,7 @@ let user = gun.user();
 let user1 = null;
 let user2 = null;
 let authenticated = false;
+let interval = null;
 
 let channelName = null;
 
@@ -180,6 +183,10 @@ function switchTo1() {
     hideAll();
     $("#tab-1").addClass("is-active");
     $("#tab-1-content").removeClass("is-hidden");
+    if(interval != null) {
+      clearInterval(interval)
+      interval = null
+    }
 }
 
 function switchTo2() {
@@ -190,6 +197,10 @@ function switchTo2() {
     hideAll();
     $("#tab-2").addClass("is-active");
     $("#tab-2-content").removeClass("is-hidden");
+    if(interval != null) {
+      clearInterval(interval)
+      interval = null
+    }
 }
 
 function switchTo3() {
@@ -203,6 +214,23 @@ function switchTo3() {
     hideAll();
     $("#tab-3").addClass("is-active");
     $("#tab-3-content").removeClass("is-hidden");
+
+  console.log("running")
+  interval = setInterval(() => {
+    console.log("running")
+    getFriendCoordinates(user1).then((fcoords) => {
+      getCoordinates(user1).then((coords) => {
+        fcoords.forEach((friend) => {
+          console.log(friend)
+          console.log(Math.sqrt((friend.longitude - coords[1])**2 + (friend.latitude - coords[0])**2))
+          if(Math.sqrt((friend.longitude - coords[1])**2 + (friend.latitude - coords[0])**2) < 0.007) {
+            console.log("Close")
+            alert(friend.name + " is nearby")
+          }
+        })
+      })
+    })
+   }, 30000)
 }
 
 function switchTo4() {
@@ -210,11 +238,21 @@ function switchTo4() {
     hideAll();
     $("#tab-4").addClass("is-active");
     $("#tab-4-content").removeClass("is-hidden");
+    if(interval != null) {
+      clearInterval(interval)
+      interval = null
+    }
+
 }
 
 function switchTo5(node) {
     if (!authenticated) {
         return;
+    }
+
+    if(interval != null) {
+      clearInterval(interval)
+      interval = null
     }
 
     if (node == null) node = user1;
