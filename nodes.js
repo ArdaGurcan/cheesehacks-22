@@ -182,13 +182,15 @@ var links = [
 
 let selected = null
 $("#person-panel").hide()
-
+$("#friend_search").on("input", ()=>{
+    getSearchResults()
+})
 $("#add-friend-from-graph").on("click" , ()=>{
     if (selected != null) {
 
         addFriend(user1, selected.name).then(() => {
             addFriendButtons()
-
+            auth()
         })
         console.log("added "+ selected.name + " as friend to " + user1);
         $("#add-friend-from-graph").prop("disabled", true)
