@@ -11,84 +11,89 @@ import { createOrUpdateFromCoordinates } from 'ol/extent';
 import getFriends from '/firebase.js';
 import updateCoordinates from '/firebase.js';
 
-const view = new View({
-  center: [0, 0],
-  zoom: 15,
-})
+function drawMap() {
 
-let vectorsource = new VectorSource();
-const map = new Map({
-  target: 'map',
-  view: view,
-  layers: [
-    new TileLayer({
-      source: new OSM(),
-    })
-  ],
-});
-
-const proj = view.getProjection();
-
-function styleFriend(name) {
-  return new Style({
-    image: new Circle({
-      radius: 9,
-      fill: new Fill({
-        'color': 'red'
-      })
-    }),
-    text: new Text({
-      text: name,
-      offsetY: 15
-    })
+  const view = new View({
+    center: [0, 0],
+    zoom: 15,
   })
-}
-
-// returns a VectorSource with all the friends on it
-function drawFriends(friends) {
-  console.log(friends);
-  const vectorsource = new VectorSource();
-  for (let f in friends) {
-    let feature = new Feature(new Point(fromLonLat([friends[f]["longitude"], friends[f]["latitude"]], proj)));
-    feature.setStyle(styleFriend(friends[f]["name"]))
-    vectorsource.addFeature(feature);
+  
+  let vectorsource = new VectorSource();
+  const map = new Map({
+    target: 'map',
+    view: view,
+    layers: [
+      new TileLayer({
+        source: new OSM(),
+      })
+    ],
+  });
+  
+  const proj = view.getProjection();
+  
+  function styleFriend(name) {
+    return new Style({
+      image: new Circle({
+        radius: 9,
+        fill: new Fill({
+          'color': 'red'
+        })
+      }),
+      text: new Text({
+        text: name,
+        offsetY: 15
+      })
+    })
   }
-  return vectorsource;
+  
+  // returns a VectorSource with all the friends on it
+  function drawFriends(friends) {
+    console.log(friends);
+    const vectorsource = new VectorSource();
+    for (let f in friends) {
+      let feature = new Feature(new Point(fromLonLat([friends[f]["longitude"], friends[f]["latitude"]], proj)));
+      feature.setStyle(styleFriend(friends[f]["name"]))
+      vectorsource.addFeature(feature);
+    }
+    return vectorsource;
+  }
+  
+  getFriends(window.user1).then((friends) => {
+    console.log("Friends: " + friends)
+    vectorsource = drawFriends(friends);
+  });
+  
+  self = new Feature(new Point([0, 0]));
+  vectorsource.addFeature(self);
+  
+  map.addLayer(new VectorLayer({
+    source: vectorsource
+    }));
+  
+  const geolocation = new Geolocation({
+    tracking: true,
+    trackingOptions: {
+      enableHighAccuracy: true,
+    },
+    projection: view.getProjection(),
+  });
+  
+  geolocation.on('error', function (error) {
+    console.log("there's a problem here");
+  });
+  
+  function getLocation() {
+    return toLonLat(geolocation.getPosition());
+  }
+  
+  geolocation.on('change:position', function () {
+    const coordinates = geolocation.getPosition();
+    self.setGeometry(coordinates ? new Point(coordinates) : null);
+    view.setCenter(coordinates);
+    const lonlat  = toLonLat(coordinates);
+    updateCoordinates(user1, lonlat);
+  });
+  
+  
+
 }
-
-getFriends(window.user1).then((friends) => {
-  console.log("Friends: " + friends)
-  vectorsource = drawFriends(friends);
-});
-
-self = new Feature(new Point([0, 0]));
-vectorsource.addFeature(self);
-
-map.addLayer(new VectorLayer({
-  source: vectorsource
-  }));
-
-const geolocation = new Geolocation({
-  tracking: true,
-  trackingOptions: {
-    enableHighAccuracy: true,
-  },
-  projection: view.getProjection(),
-});
-
-geolocation.on('error', function (error) {
-  console.log("there's a problem here");
-});
-
-function getLocation() {
-  return toLonLat(geolocation.getPosition());
-}
-
-geolocation.on('change:position', function () {
-  const coordinates = geolocation.getPosition();
-  self.setGeometry(coordinates ? new Point(coordinates) : null);
-  view.setCenter(coordinates);
-  const lonlat  = toLonLat(coordinates);
-  updateCoordinates(user1, lonlat);
-});
-
