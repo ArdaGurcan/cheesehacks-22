@@ -142,7 +142,6 @@ function switchTo1() {
     if (!authenticated) {
         return
     }
-    setUserNode()
     centerUser()
     removeActive()
     hideAll()
