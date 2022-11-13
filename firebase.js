@@ -27,13 +27,13 @@ window.addFriend = addFriend
 window.updateCoordinates =updateCoordinates
 window.getCoordinates = getCoordinates
 window.getFriendCoordinates = getFriendCoordinates
-
 // addUser("Bob")
 // updateCoordinates("Bob", 10, 10)
 // getCoordinates("Bob")
 // addFriend("Bob", "Kyle")
 // addFriend("Bob", "Arda")
 // getfriendCoordinates("Bob")
+// getFriends("Arda")
 
 function getData(snapshot) {
   let nodes = []
@@ -58,6 +58,7 @@ function getGraphData() {
       let data = getData(snapshot); // generate links and nodes
       nodes = data[0]
       links = data[1]
+      return [nodes, links]
       // return something later or something like that
       //DEBUGGING
       // console.log(nodes)
@@ -88,6 +89,7 @@ function getFriends(name) {
     })
   })
 }
+
 function addFriend(name, friend) {
   let id = ""
   let friends = []
@@ -125,16 +127,18 @@ function updateCoordinates(name, x, y) {
   })
 }
 
-function getCoordinates(name) {
-  getDocs(userRef)
+async function getCoordinates(name) {
+  let data = ""
+  await getDocs(userRef)
     .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
           // console.log([doc.data().coordinates.longitude, doc.data().coordinates.latitude])
-          return [doc.data().coordinates.longitude, doc.data().coordinates.latitude]
+          data = [doc.data().coordinates.longitude, doc.data().coordinates.latitude]
       }
     })
   })
+  return data
 }
 
 function getFriendCoordinates(name) {

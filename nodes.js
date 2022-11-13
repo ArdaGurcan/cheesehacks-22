@@ -191,9 +191,9 @@ $("#add-friend-from-graph").on("click" , ()=>{
     }
 })
 
-function genGraphData() {
-
-}
+// function genGraphData() {
+//   getGraphData()
+// }
 
 function getNeighbors(node) {
     return links.reduce(
