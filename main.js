@@ -149,7 +149,8 @@ function switchTo1() {
     if (!authenticated) {
         return;
     }
-    centerUser();
+    centerUser()
+    genGraphData()
     removeActive();
     hideAll();
     $("#tab-1").addClass("is-active");
