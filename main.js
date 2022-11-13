@@ -184,6 +184,13 @@ function switchTo4() {
     $("#tab-4-content").removeClass("is-hidden");
 }
 
+function switchTo5() {
+    removeActive();
+    hideAll();
+    $("#tab-5").addClass("is-active");
+    $("#tab-5-content").removeClass("is-hidden");
+}
+
 function removeActive() {
     $("li").each(function () {
         $(this).removeClass("is-active");
