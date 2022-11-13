@@ -191,11 +191,22 @@ function switchTo4() {
     $("#tab-4-content").removeClass("is-hidden");
 }
 
-function switchTo5() {
+function switchTo5(node) {
+    if (!authenticated) {
+        return;
+    }
+
+    if(node == null) node == user1
+    
     removeActive();
     hideAll();
     $("#tab-5").addClass("is-active");
     $("#tab-5-content").removeClass("is-hidden");
+
+    $("#profile")[0].innerHTML += 
+        '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
+        user1 +
+        '</p>';
 }
 
 function removeActive() {

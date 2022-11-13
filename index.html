@@ -168,11 +168,38 @@
     </div>
 
     <!-- Profile Page -->
-    <div class="is-hidden" id="tab-5-content">
-      <div>
-        <figure class="image is-128x128">
-          <img class="is-rounded" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">
-        </figure>
+    <div class="is-hidden" id="tab-5-content" style="height:100vh">
+      <div class="tile is-ancestor is-fullheight" style="height:100%">
+        <div class="tile is-vertical is-4">
+          <div class="tile is-parent is-vertical">
+            <article id="profile" class="tile is-child notification is-info">
+              <figure id="profile-picture" class="image">
+                <img class="is-rounded" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">
+              </figure>
+
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-danger">
+              <p class="title text-c">Interests</p>
+              <p class="subtitle text-c">List of interests</p>
+              <div class="content">
+                <!-- Content -->
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-success">
+            <div class="content">
+              <p class="title text-c">Contains bio, friends, rating, etc</p>
+              <!-- <p class="subtitle"></p> -->
+              <div class="content text-c">
+                <!-- Content -->
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
 
@@ -201,7 +228,7 @@
             </a>
           </li>
           <li id="tab-5">
-            <a onClick="switchTo5()">
+            <a onClick="switchTo5(null)">
               <span class="tab-icon icon is-large"><i class="fa fa-user"></i></span>
             </a>
           </li>

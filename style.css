@@ -190,3 +190,17 @@ background-color: rgba(0, 116, 116, 0.1) !important;
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
+
+#profile-picture {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 60%;
+  width: 60%;
+}
+
+.text-c {
+  text-align: center;
+}
+
+
