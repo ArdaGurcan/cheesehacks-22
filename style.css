@@ -75,15 +75,19 @@ body {
 }
 
 .button {
-  background: linear-gradient(var(--fg-gradient)) !important;
-  background: -moz-linear-gradient(var(--fg-gradient)) !important;
-  background: -webkit-linear-gradient(var(--fg-gradient)) !important;
+  background: linear-gradient(var(--fg-gradient)) ;
+  background-repeat: no-repeat !important
+  ;
+  background: -moz-linear-gradient(var(--fg-gradient)) ;
+  background: -webkit-linear-gradient(var(--fg-gradient)) ;
+  background-size: 100% !important;
   color: whitesmoke;
+  border-width: 0;
 }
 
 .button:hover {
-  color: gainsboro;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.307) 0 0);
+  color: gray;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.307) 0 0); */
 }
 
 .search>.control>* {

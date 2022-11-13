@@ -147,6 +147,9 @@ gun.on("auth", function () {
 
 
 function switchTo1() {
+    if(!authenticated) {
+        return;
+    }
     removeActive();
     hideAll();
     $("#tab-1").addClass("is-active");
@@ -164,6 +167,9 @@ function switchTo2() {
 }
 
 function switchTo3() {
+    if(!authenticated) {
+        return;
+    }
     removeActive();
     hideAll();
     $("#tab-3").addClass("is-active");
