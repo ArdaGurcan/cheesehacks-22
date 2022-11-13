@@ -82,15 +82,21 @@ body {
   ;
   background: -moz-linear-gradient(var(--fg-gradient)) ;
   background: -webkit-linear-gradient(var(--fg-gradient)) ;
-  background-size: 100% !important;
+  /* background-size: 100% !important; */
   color: whitesmoke;
   border-width: 0;
+  background-size: 600% 100% !important;
+
+  moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
-.button:hover {
+/* .button:hover {
   color: gray;
-  /* background-image: linear-gradient(rgba(0, 0, 0, 0.307) 0 0); */
-}
+  background-image: linear-gradient(rgba(0, 0, 0, 0.307) 0 0);
+} */
 
 .search>.control>* {
   border-radius: 0;
@@ -100,6 +106,13 @@ body {
 
 .tab-icon>i,
 h1 {
+
+  background-size: 600% 100% !important;
+
+  moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
   background: linear-gradient(var(--fg-gradient));
   background: -moz-linear-gradient(var(--fg-gradient));
   background: -webkit-linear-gradient(var(--fg-gradient));
@@ -132,7 +145,7 @@ section {
 .add-friend {
   /* position: absolute;  */
   float: right;
-  bottom: 0.45rem;
+  bottom: 0.35rem;
     right: -0.35rem;
 }
 
@@ -167,4 +180,13 @@ background-color: rgba(0, 116, 116, 0.1) !important;
 .select:focus, .select:active  {
   outline: 0 !important;
   box-shadow: none !important;
+}
+
+.button:hover , .tab-icon>i:hover {
+  color: whitesmoke;
+  background-position: 100% 0;
+  moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
