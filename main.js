@@ -1,4 +1,3 @@
-
 // Define gun instance
 let gun = Gun([
     "http://77.68.15.151:1234/gun",
@@ -15,7 +14,20 @@ let authenticated = false;
 
 let channelName = null;
 
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
+        reader.onload = function (e) {
+            $("#profile-photo").attr("src", e.target.result);
+            // .width(200)
+            // .height(200);
+            console.log(e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 // All currently unusued fields
 $("#msg").hide();
@@ -110,7 +122,7 @@ function Li(say, id) {
 
 function Dropdown(item, id) {
     let option =
-    $("option[value='" + item + "']").get(0) ||
+        $("option[value='" + item + "']").get(0) ||
         // Add message to ul
         $("<option>").attr("value", item).appendTo("#user2");
     $(option).text(item);
@@ -131,7 +143,7 @@ let auth = function () {
 
     getFriends(user1).then((e) => {
         e.forEach((element) => {
-            Dropdown(element)
+            Dropdown(element);
         });
     });
     user.get("friends").map().once(Log);
@@ -151,7 +163,8 @@ function switchTo1() {
     if (!authenticated) {
         return;
     }
-    centerUser()
+    centerUser();
+
     // genGraphData()
     removeActive();
     hideAll();
@@ -170,14 +183,12 @@ function switchTo2() {
 }
 
 function switchTo3() {
-    
     if (!authenticated) {
         return;
     }
 
-    ready()
+    ready();
 
-    
     removeActive();
     hideAll();
     $("#tab-3").addClass("is-active");
@@ -196,25 +207,43 @@ function switchTo5(node) {
         return;
     }
 
-    if(node == null) node == user1;
-    
+    if (node == null) node = user1;
+
     removeActive();
     hideAll();
     $("#tab-5").addClass("is-active");
     $("#tab-5-content").removeClass("is-hidden");
 
+    // display profile
     $("#profile")[0].innerHTML = "";
 
-    $("#profile")[0].innerHTML += 
+    $("#profile")[0].innerHTML +=
         '<figure id="profile-picture" class="image">' +
-        '<img class="is-rounded"' +
+        '<img class="is-rounded" id="profile-photo"' +
         'src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">' +
-        '</figure>'
+        '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(this);" style="display:none"></figure>';
 
-    $("#profile")[0].innerHTML += 
+    $("#profile")[0].innerHTML +=
         '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
-        user1 +
-        '</p>';
+        node +
+        "</p>";
+
+    $("img#profile-photo").on("click", function () {
+        // console.log("asdasda");
+        $("input#my_file").click();
+    });;
+    // display friends
+    $("#friends-list")[0].innerHTML = "";
+    $("#friends-list")[0].innerHTML += 
+        '<p class="title">Friends:</p>';
+    getFriends(node).then((friends) => {
+        console.log(friends)
+        friends.forEach(function(friend) {
+            $("#friends-list")[0].innerHTML += 
+            '<p class="subtitle">' + friend + '</p>';
+        });
+    })
+
 }
 window.switchTo5 = switchTo5;
 
@@ -233,7 +262,7 @@ function hideAll() {
 }
 
 function getSearchResults() {
-    // reset results 
+    // reset results
     $(".results")[0].innerHTML = "";
 
     // get filter phrase from search bar
@@ -245,20 +274,19 @@ function getSearchResults() {
     var containsFilter = [];
 
     getUsers().then((e) => {
-        console.log(e)
+        console.log(e);
         e.forEach(function (node) {
-            if(filter != null) {
+            if (filter != null) {
                 var filterIndex = node.toUpperCase().indexOf(filter);
-                if(filterIndex == 0) {
+                if (filterIndex == 0) {
                     startsWithFilter.push(node);
-                }
-                else if(filterIndex > -1) {
+                } else if (filterIndex > -1) {
                     containsFilter.push(node);
                 }
             }
         });
-    
-        console.log(startsWithFilter)
+
+        console.log(startsWithFilter);
         // create buttons
         startsWithFilter.forEach(function (node) {
             createFriendButton(node);
@@ -266,8 +294,7 @@ function getSearchResults() {
         containsFilter.forEach(function (node) {
             createFriendButton(node);
         });
-    })
-
+    });
 }
 
 function createFriendButton(node) {
@@ -278,11 +305,11 @@ function createFriendButton(node) {
             $(".results")[0].innerHTML +=
                 '<div class="box result">' +
                 '<button class="add-friend is-info button is-right"' +
-                'onclick=\'addFriend(\"' +
+                "onclick='addFriend(\"" +
                 user1 +
                 '","' +
                 node +
-                '\").then(()=>{createFriendButton()})\'' +
+                "\").then(()=>{createFriendButton()})'" +
                 (alreadyFriends ? " disabled" : "") +
                 ">" +
                 '<span class="icon is-medium"><i class="fa fa-' +
