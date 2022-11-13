@@ -223,7 +223,6 @@ function centerUser() {
 function genGraphData() {
 
 }
->>>>>>> d5ee4e6f88ee3cfd29dc61f30d7a9a65af9b1e49
 
 function getNeighbors(node) {
     return links.reduce(
