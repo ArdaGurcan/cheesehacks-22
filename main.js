@@ -211,11 +211,18 @@ function switchTo5(node) {
         '<img class="is-rounded"' +
         'src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">' +
         '</figure>' +
+        '<br><input type="file" id="my_file" style="display: none" ></figure>' +
         '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
         user1 +
         '</p>';
 
-    // display profile
+    // add profile photo
+    $("img#profile-photo").on("click",function () {
+        // console.log("asdasda");
+        $("input#my_file").click();
+
+    })
+    // display friends
     $("#friends-list")[0].innerHTML = "";
     $("#friends-list")[0].innerHTML += 
         '<p class="title">Friends:</p>';
