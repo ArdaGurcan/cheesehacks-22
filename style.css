@@ -138,8 +138,7 @@ section {
 
 #map {
   position: absolute;
-  top: 150;
-  bottom: 150;
+  bottom: 4.75rem ;
   width: 100%;
-  height: 500;
+  height: calc(100% - 4.75rem);
 }

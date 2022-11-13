@@ -1,3 +1,4 @@
+
 // Define gun instance
 let gun = Gun([
     "http://77.68.15.151:1234/gun",
@@ -169,9 +170,14 @@ function switchTo2() {
 }
 
 function switchTo3() {
+    
     if (!authenticated) {
         return;
     }
+
+    ready()
+
+    
     removeActive();
     hideAll();
     $("#tab-3").addClass("is-active");
