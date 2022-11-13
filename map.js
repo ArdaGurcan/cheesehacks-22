@@ -5,7 +5,7 @@ import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 import { addEquivalentTransforms, fromLonLat, toLonLat } from "ol/proj";
 import Geolocation from "ol/Geolocation";
 import Text from "ol/style/Text";
-import { Icon, Fill, Style } from "ol/style";
+import { Circle, Icon, Fill, Style } from "ol/style";
 import { createOrUpdateFromCoordinates } from "ol/extent";
 
 import getFriendCoordinates from "/firebase.js";
@@ -35,20 +35,34 @@ window.ready = () => {
 
         const proj = view.getProjection();
 
+        function getScale(resolution) {
+          return 100/resolution;
+        }
+
         async function styleFriend(name) {
-          let style = null;
-          await getPfp(name).then((img) => {
-            console.log(img);
-            style = new Style({
-                image: new Icon({
-                  src: img
+
+          //let style = null;
+          //await getPfp(name).then((img) => {
+
+            // const image = document.createElement("img");
+            // const canvas = document.createElement("canvas");
+            // const ctx = canvas.getContext("2d");
+            // ctx.drawImage(image, 0, 0, 1000, 1000);
+            // image.source = img
+            // console.log(canvas);
+
+            let style = new Style({
+                image: new Circle({
+                  radius: 9,
+                  fill: new Fill({
+                      color: "red",
+                  }),
                 }),
                 text: new Text({
                     text: name,
                     offsetY: 15,
                 }),
-            })
-          })
+          });
           return style;
         };
 
@@ -127,5 +141,15 @@ window.ready = () => {
             updateCoordinates(user1, lonlat[0], lonlat[1]);
         });
     }, 1);
+
+    // var currZoom = map.getView().getZoom();
+    // map.on('moveend', function(e) {
+    //   var newZoom = map.getView().getZoom();
+    //   if (currZoom != newZoom) {
+    //     for (let feature in map.get)
+    //     currZoom = newZoom;
+    //   }
+    // });
+
 }
 // $(document).ready(() => {ready()});
