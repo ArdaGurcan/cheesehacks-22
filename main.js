@@ -151,7 +151,7 @@ function switchTo1() {
         return;
     }
     centerUser()
-    genGraphData()
+    // genGraphData()
     removeActive();
     hideAll();
     $("#tab-1").addClass("is-active");
@@ -218,7 +218,7 @@ function getSearchResults() {
     var startsWithFilter = [];
     var containsFilter = [];
 
-    getFriends(user1).then((e) => {
+    getUsers().then((e) => {
         console.log(e)
         e.forEach(function (node) {
             if(filter != null) {
