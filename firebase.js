@@ -102,7 +102,7 @@ function addUser(name) {
   })
 }
 
-async function getFriends(name) {
+export default async function getFriends(name) {
   let friends = []
   await getDocs(userRef)
     .then((snapshot) => {
