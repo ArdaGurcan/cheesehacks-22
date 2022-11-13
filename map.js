@@ -17,7 +17,6 @@ const view = new View({
 })
 
 let vectorsource = new VectorSource();
-console.log("fiusaif;auwh")
 const map = new Map({
   target: 'map',
   view: view,
