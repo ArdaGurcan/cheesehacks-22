@@ -6,6 +6,7 @@ import {fromLonLat, toLonLat} from 'ol/proj';
 import Geolocation from 'ol/Geolocation';
 import Text from 'ol/style/Text';
 import {Circle, Fill, Style} from 'ol/style';
+import { createOrUpdateFromCoordinates } from 'ol/extent';
 
 const view = new View({
   center: [0, 0],
@@ -84,5 +85,7 @@ geolocation.on('change:position', function () {
   const coordinates = geolocation.getPosition();
   self.setGeometry(coordinates ? new Point(coordinates) : null);
   view.setCenter(coordinates);
+  const lonlat  = toLonLat(coordinates);
+  updateCoordinates(user1, lonlat);
 });
 
