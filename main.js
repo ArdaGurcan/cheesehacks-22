@@ -287,7 +287,7 @@ function switchTo5(node) {
         });
     });
 
-    window.getPfp() = getPfp;
+    // window.getPfp() = getPfp;
 
     // display friends
     $("#friends-list")[0].innerHTML = "";
