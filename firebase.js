@@ -75,7 +75,7 @@ function getData(snapshot, name) {
                   docFriend2.data().friends.forEach((friend2) => {
                     let friend2Node = {name: friend2}
                     nodes.push(friend2Node)
-                    let friendlink = {target: friend1, source: docFriend2.data().name, strength: 1} // link format
+                    let friendlink = {target: friend2, source: docFriend2.data().name, strength: 1} // link format
                     links.push(friendlink)
                   })
                 }
@@ -88,6 +88,8 @@ function getData(snapshot, name) {
   })
   links = new Set(links)
   nodes = new Set(nodes)
+  // links = links.filter(checkCopies)
+  // nodes = nodes.filter()
   links = Array.from(links)
   nodes = Array.from(nodes)
   return [nodes, links]
