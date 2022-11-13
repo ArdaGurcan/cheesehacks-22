@@ -1,4 +1,3 @@
-
 // Define gun instance
 let gun = Gun([
     "http://77.68.15.151:1234/gun",
@@ -15,16 +14,19 @@ let authenticated = false;
 
 let channelName = null;
 
+
 function readURL(input, name) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
+        
+        console.log(input + " " + name);
 
         reader.onload = function (e) {
             $("#profile-photo").attr("src", e.target.result);
             // .width(200)
             // .height(200);
-            updatePfp(name, e.target.result)
             console.log(e.target.result);
+            updatePfp(name, e.target.result);
         };
 
         reader.readAsDataURL(input.files[0]);
@@ -219,25 +221,34 @@ function switchTo5(node) {
     // display profile
     $("#profile")[0].innerHTML = "";
 
-    $("#profile")[0].innerHTML +=
-        '<figure id="profile-picture" class="image">' +
-        '<img class="is-rounded" id="profile-photo"' +
-        'src="' + getPfp(node) +'">' +
-        '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(' + node + ', this);" style="display:none"></figure>';
+    getPfp(node).then((e) => {
+        console.log(e)
+        $("#profile")[0].innerHTML +=
+            '<figure id="profile-picture" class="image">' +
+            '<img class="is-rounded" id="profile-photo" ' +
+            'src="' +
+            e
+            // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU" +
+            '">' +
+            '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(this, \'' +
+            node +
+            "');\" " +
+            'style="display:none"' +
+            "></figure>";
 
-    $("#profile")[0].innerHTML +=
-        '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
-        node +
-        "</p>";
+        $("#profile")[0].innerHTML +=
+            '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
+            node +
+            "</p>";
+        $("img#profile-photo").on("click", function () {
+            console.log("asdasda");
+            $("input#my_file").click();
+        });
 
-    $("img#profile-photo").on("click", function () {
-        // console.log("asdasda");
-        $("input#my_file").click();
-    });;
+    });
     // display friends
     $("#friends-list")[0].innerHTML = "";
-    $("#friends-list")[0].innerHTML +=
-        '<p class="title">Friends:</p>';
+    $("#friends-list")[0].innerHTML += '<p class="title">Friends:</p>';
     getFriends(node).then((friends) => {
         console.log(friends)
         friends.forEach(function(friend) {
@@ -245,8 +256,7 @@ function switchTo5(node) {
             '<button class="button is-text"' +  "onclick='switchTo5(\"" + friend + "\")'>" + friend + '</button>';
             // '<p class="subtitle">' + friend + '</p>';
         });
-    })
-
+    });
 }
 window.switchTo5 = switchTo5;
 
@@ -269,7 +279,7 @@ function getSearchResults() {
 
     // get filter phrase from search bar
     var filter = $("#friend_search").val().toUpperCase();
-    console.log(filter)
+    console.log(filter);
 
     // filter and bucketize by (starts with filter), (contains filter)
     var startsWithFilter = [];
@@ -296,8 +306,7 @@ function getSearchResults() {
             createFriendButton(node);
         });
         containsFilter.forEach(function (node) {
-            if(startsWithFilter.indexOf(node) == -1)
-                createFriendButton(node);
+            if (startsWithFilter.indexOf(node) == -1) createFriendButton(node);
         });
     });
 }
