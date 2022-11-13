@@ -198,34 +198,34 @@ function hideAll() {
 
 function getSearchResults() {
     // reset results 
-    $(".results")[0].innerHTML = ""
+    $(".results")[0].innerHTML = "";
 
     // get filter phrase from search bar
-    var filter = $("#friend_search").val().toUpperCase()
+    var filter = $("#friend_search").val().toUpperCase();
 
     // filter and bucketize by (starts with filter), (contains filter)
-    var startsWithFilter = []
-    var containsFilter = []
+    var startsWithFilter = [];
+    var containsFilter = [];
     nodes.forEach(function (node) {
         if(filter != null) {
-            var filterIndex = node.name.toUpperCase().indexOf(filter)
+            var filterIndex = node.name.toUpperCase().indexOf(filter);
             if(filterIndex == 0) {
-                startsWithFilter.push(node)
+                startsWithFilter.push(node);
             }
             else if(filterIndex > -1) {
-                containsFilter.push(node)
+                containsFilter.push(node);
             }
         }
-    })
+    });
 
 
     // create buttons
     startsWithFilter.forEach(function (node) {
-        createFriendButton(node)
-    })
+        createFriendButton(node);
+    });
     containsFilter.forEach(function (node) {
-        createFriendButton(node)
-    })
+        createFriendButton(node);
+    });
 }
 
 function createFriendButton(node) {
