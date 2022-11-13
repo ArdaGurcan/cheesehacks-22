@@ -143,9 +143,6 @@ gun.on("auth", function () {
     addFriendButtons();
 });
 
-
-
-
 function switchTo1() {
     if(!authenticated) {
         return;
@@ -202,6 +199,6 @@ function addFriendButtons() {
         $(".results")[0].innerHTML += '<div class="box result">' +
         '<button class="add-friend is-info button is-right"' + 
         'onclick=addFriend("' + user1 + '","' + node.name +'")>' +
-        'Add as Friend</button>' + node.name + '</div>';
+        'Add as Friend</button>' + node.name + '</div>'
     });
 }
