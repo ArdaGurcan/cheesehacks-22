@@ -1,4 +1,3 @@
-
 // Define gun instance
 let gun = Gun([
     "http://77.68.15.151:1234/gun",
@@ -16,15 +15,18 @@ let authenticated = false;
 let channelName = null;
 
 function readURL(input, name) {
+    console.log("readURL called");
     if (input.files && input.files[0]) {
         var reader = new FileReader();
+
+        console.log(input + " " + name);
 
         reader.onload = function (e) {
             $("#profile-photo").attr("src", e.target.result);
             // .width(200)
             // .height(200);
-            updatePfp(name, e.target.result)
-            console.log(e.target.result);
+            // console.log(e.target.result);
+            updatePfp(name, e.target.result);
         };
 
         reader.readAsDataURL(input.files[0]);
@@ -87,12 +89,12 @@ $("#receiver").change(function (e) {
 
     // Pull up all messages in channel
     $("ul#messages")[0].innerHTML = "";
-    gun.get(channelName).map().once(Li);
+    gun.get(channelName).map().once(Li)
+
 });
 
 // On message sent
 $("#said").on("submit", function (e) {
-    console.log("AAA");
     // Prevent page refresh
     e.preventDefault();
 
@@ -101,10 +103,14 @@ $("#said").on("submit", function (e) {
 
     // Add message to channel
     console.log(channelName);
-    gun.get(channelName).set(user1 + ": " + $("#say").val());
+    gun.get(channelName).set(user1 + ": " + $("#say").val()).then(()=>{
+
+        $("#messages").scrollTop(100000)
+    })
 
     // Log message to console
-    console.log(user1 + " said " + $("#say").val() + " to " + user2);
+    // console.log(user1 + " said " + $("#say").val() + " to " + user2);
+
     $("#say").val("");
 });
 
@@ -118,7 +124,7 @@ function Li(say, id) {
     let li =
         $("#" + id).get(0) ||
         // Add message to ul
-        $("<li>").attr("id", id).appendTo("ul#messages");
+        $("<li>").attr("id", id).prependTo("ul#messages");
     $(li).text(say);
 }
 
@@ -133,6 +139,7 @@ function Dropdown(item, id) {
 }
 
 let auth = function () {
+    
     // Set user1's name
     user1 = $("#alias").val();
 
@@ -219,36 +226,47 @@ function switchTo5(node) {
     $("#tab-5-content").removeClass("is-hidden");
 
     // display profile
-    $("#profile")[0].innerHTML = "";
 
-    $("#profile")[0].innerHTML +=
-        '<figure id="profile-picture" class="image">' +
-        '<img class="is-rounded" id="profile-photo"' +
-        'src="' + getPfp(node) +'">' +
-        '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(' + node + ', this);" style="display:none"></figure>';
+    getPfp(node).then((e) => {
 
-    $("#profile")[0].innerHTML +=
-        '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
-        node +
-        "</p>";
-
-    $("img#profile-photo").on("click", function () {
-        // console.log("asdasda");
-        $("input#my_file").click();
-    });;
+        // $("#profile")[0].innerHTML = "";
+        $("#profile")[0].innerHTML =
+            '<figure id="profile-picture" class="image">' +
+            '<img class="is-rounded" id="profile-photo" ' +
+            'src="' +
+            e +
+        // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU" +
+        '">' +
+            '<input type="file" id="my_file" accept="image/*" '+
+            
+            'onchange="readURL(this, \'' +
+            node +
+            "');\" " +
+            'style="display:none"' +
+            "></figure>" +
+            '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
+            node +
+            "</p>";
+        $("img#profile-photo").on("click", function () {
+            $("input#my_file").click();
+        });
+    });
     // display friends
     $("#friends-list")[0].innerHTML = "";
-    $("#friends-list")[0].innerHTML +=
-        '<p class="title">Friends:</p>';
+    $("#friends-list")[0].innerHTML += '<p class="title">Friends:</p>';
     getFriends(node).then((friends) => {
-        console.log(friends)
-        friends.forEach(function(friend) {
+        console.log(friends);
+        friends.forEach(function (friend) {
             $("#friends-list")[0].innerHTML +=
-            '<button class="button is-text"' +  "onclick='switchTo5(\"" + friend + "\")'>" + friend + '</button>';
+                '<button class="button is-info"' +
+                "onclick='switchTo5(\"" +
+                friend +
+                "\")'>" +
+                friend +
+                "</button><br>";
             // '<p class="subtitle">' + friend + '</p>';
         });
-    })
-
+    });
 }
 window.switchTo5 = switchTo5;
 
@@ -271,7 +289,7 @@ function getSearchResults() {
 
     // get filter phrase from search bar
     var filter = $("#friend_search").val().toUpperCase();
-    console.log(filter)
+    console.log(filter);
 
     // filter and bucketize by (starts with filter), (contains filter)
     var startsWithFilter = [];
@@ -298,8 +316,7 @@ function getSearchResults() {
             createFriendButton(node);
         });
         containsFilter.forEach(function (node) {
-            if(startsWithFilter.indexOf(node) == -1)
-                createFriendButton(node);
+            if (startsWithFilter.indexOf(node) == -1) createFriendButton(node);
         });
     });
 }
