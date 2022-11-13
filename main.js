@@ -199,11 +199,11 @@ function addFriendButtons() {
                 $(".results")[0].innerHTML +=
                     '<div class="box result">' +
                     '<button class="add-friend is-info button is-right"' +
-                    'onclick=addFriend("' +
+                    'onclick=\'addFriend(\"' +
                     user1 +
                     '","' +
                     node.name +
-                    '").then(()=>{addFriendButtons()})' +
+                    '\").then(()=>{addFriendButtons()})\'' +
                     (alreadyFriends ? " disabled" : "") +
                     ">" +
                     '<span class="icon is-medium"><i class="fa fa-' +
