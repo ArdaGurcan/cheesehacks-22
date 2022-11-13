@@ -68,7 +68,7 @@ window.ready = () => {
                   feature.setStyle(style);
                 })
                 vectorsource.addFeature(feature);
-              
+
             }
             console.log(vectorsource.getFeatures());
             //return vectorsource;
@@ -126,6 +126,6 @@ window.ready = () => {
             console.log(lonlat)
             updateCoordinates(user1, lonlat[0], lonlat[1]);
         });
-    }, 3500);
+    }, 1);
 }
 // $(document).ready(() => {ready()});
