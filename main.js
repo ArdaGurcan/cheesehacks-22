@@ -19,7 +19,7 @@ let channelName = null;
 
 function readURL(input, name) {
     console.log("readURL called");
-    if (input.files && input.files[0]) {
+    if (input.files && input.files[0] && user1 == name) {
         var reader = new FileReader();
 
         console.log(input + " " + name);
