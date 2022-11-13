@@ -16,7 +16,7 @@ let authenticated = false;
 
 let channelName = null;
 
-function readURL(input) {
+function readURL(input, name) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -24,7 +24,7 @@ function readURL(input) {
             $("#profile-photo").attr("src", e.target.result);
             // .width(200)
             // .height(200);
-            updatePfp()
+            updatePfp(name, e.target.result)
             console.log(e.target.result);
         };
 
