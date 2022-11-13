@@ -29,6 +29,7 @@ window.updateCoordinates =updateCoordinates
 window.getCoordinates = getCoordinates
 window.getFriendCoordinates = getFriendCoordinates
 window.updatePfp = updatePfp
+window.getPfp = getPfp
 // addUser("Bob")
 // updateCoordinates("Bob", 10, 10)
 // getCoordinates("Bob")
@@ -149,6 +150,18 @@ async function updatePfp(name, image) {
       pfp: image
     })
   })
+}
+async function getPfp(name) {
+  let pfp = ""
+  await getDocs(userRef)
+    .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      if(doc.data().name == name) {
+        pfp = doc.data().pfp
+      }
+    })
+  })
+  return pfp
 }
 
 async function getFriends(name) {
