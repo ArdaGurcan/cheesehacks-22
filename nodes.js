@@ -36,6 +36,7 @@ function centerUser() {
 }
 
 function genGraphData() {
+  
     getGraphData(user1).then((data) => {
         let myNode = data[0];
         links = data[1];
