@@ -308,18 +308,6 @@ var dragDrop = d3
 function selectNode(selectedNode) {
     var neighbors = getNeighbors(selectedNode);
 
-    // nodeElements.attr("cx", function (node) {
-    //     if (node.name == user1) {
-    //         return width / 2;
-    //     }
-    //     return node.x;
-    // });
-    // nodeElements.attr("cy", function (node) {
-    //     if (node.name == user1) {
-    //         return height / 2;
-    //     }
-    //     return node.y;
-    // });
     // we modify the styles to highlight selected nodes
     nodeElements.attr("fill", function (node) {
         return getNodeColor(node, neighbors);

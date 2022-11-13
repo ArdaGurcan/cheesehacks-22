@@ -191,10 +191,13 @@ function hideAll() {
 
 function addFriendButtons() {
     $(".results")[0].innerHTML = ""
+    var filter = $("#friend_search").val().toUpperCase()
+    console.log(filter)
     nodes.forEach(function (node) {
-        if (user1 !== node.name)
-            getFriends(user1).then((e) => {
-                let alreadyFriends = e.indexOf(node.name) != -1;
+        var filtered = filter != null && node.name.toUpperCase().indexOf(filter) == -1
+        if (user1 !== node.name && !filtered)
+            getFriends(user1).then((friends) => {
+                let alreadyFriends = friends.indexOf(node.name) != -1;
 
                 $(".results")[0].innerHTML +=
                     '<div class="box result">' +

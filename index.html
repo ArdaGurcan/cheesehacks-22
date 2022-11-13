@@ -38,10 +38,12 @@
       <!-- Search Bar to type in-->
       <div class="field has-addons search" style="height: 4rem;">
         <div class="control" style="width: 100%; height: 100% !important;">
-          <input class="input" style="height: 100%; font-size: 1.5rem;" type="text" placeholder="Find a friend">
+          <input id="friend_search" class="input" style="height: 100%; font-size: 1.5rem;" type="text" placeholder="Find a friend">
         </div>
+
+      <!-- Click this button to search -->
         <div class="control">
-          <a class="button" style="height: 100%; aspect-ratio: 1/1;">
+          <a class="button" style="height: 100%; aspect-ratio: 1/1;" onclick="addFriendButtons()">
             <span class="icon is-large"><i class="fa fa-search"></i></span>
           </a>
         </div>
@@ -49,7 +51,7 @@
 
       <!-- Search Results -->
       <div class="results">
-        
+        <!-- Changes dynamically based on search results -->
       </div>
     </div>
 
