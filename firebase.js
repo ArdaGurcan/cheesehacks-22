@@ -166,7 +166,8 @@ async function addFriend(name, friend) {
   console.log(friend + ' added as friend of ' + name);
 }
 
-export function updateCoordinates(name, x, y) {
+async function updateCoordinates(name, x, y) {
+  console.log("called")
   let id = ""
   getDocs(userRef)
     .then((snapshot) => {
@@ -182,6 +183,7 @@ export function updateCoordinates(name, x, y) {
     })
   })
 }
+window.updateCoordinates = updateCoordinates;
 
 async function getCoordinates(name) {
   let data = ""
@@ -196,8 +198,7 @@ async function getCoordinates(name) {
   })
   return data
 }
-
-export default async function getFriendCoordinates(name) {
+ export default async function getFriendCoordinates(name) {
   let friends = []
   await getDocs(userRef)
     .then((snapshot) => {
