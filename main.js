@@ -155,6 +155,8 @@ let auth = function () {
 
     authenticated = true;
 
+    $("#tabs").addClass("is-active");
+    $("#tabs").removeClass("is-hidden");
     genGraphData();
     getSearchResults();
 };

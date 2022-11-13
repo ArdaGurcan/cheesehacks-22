@@ -11,14 +11,14 @@
 </head>
 
 <body>
-  <section class="hero is-fullheight is-light">
+  <section class="tab hero is-fullheight is-light">
 
     <!-- Graph -->
-    <div class="is-hidden" id="tab-1-content" height="100%">
+    <div class="tab is-hidden" id="tab-1-content" height="100%">
       <h1 class="title is-1" style="top: 0%;
       left: 50%;
       transform: translate(-50%, 0%); position: absolute; ">Your Graph</h1>
-      
+
       <article id="person-panel" class="panel is-secondary" style="top: 1rem;
       left: 1rem; position: absolute;">
         <p id="panel-person-name" class="panel-heading">
@@ -27,13 +27,13 @@
         <div class="panel-block">
           <button class="button is-info" id="add-friend-from-graph">Add Friend</button>
         </div>
-        
+
       </article>
       <svg width="100%" height="100%"></svg>
     </div>
 
     <!-- Friend Search Bar Page -->
-    <div class="is-hidden" id="tab-2-content">
+    <div class="tab is-hidden" id="tab-2-content">
 
       <!-- Search Bar to type in-->
       <div class="field has-addons search" style="height: 4rem;">
@@ -56,7 +56,7 @@
     </div>
 
     <!-- Geolocation -->
-    <div class="is-hidden" id="tab-3-content">
+    <div class="tab is-hidden" id="tab-3-content">
       <div id="map" class="map"><div id="popup"></div></div>
       <!-- Pointer events polyfill for old browsers, see https://caniuse.com/#feat=pointer -->
       <script src="https://unpkg.com/elm-pep@1.0.6/dist/elm-pep.js"></script>
@@ -67,10 +67,10 @@
     </div>
 
     <!-- Login and Chatting Page -->
-    <div id="tab-4-content" style="height:100vh ">
-
+    <div class = "tab" id="tab-4-content" style="height:100vh ">
+      <div class="login">
       <form id="sign">
-
+        <h1 id=login-logo>LOGO</h1>
         <div class="field">
           <label class="label">Username</label>
           <p class="control has-icons-left has-icons-right">
@@ -83,7 +83,7 @@
             <i class="fa fa-check"></i>
           </span> -->
           </p>
-          
+
           <p class="help is-danger" id="error"></p>
         </div>
         <div class="field">
@@ -108,6 +108,7 @@
           </p>
         </div>
       </form>
+      </div>
 
       <div id="msg" class="tile is-ancestor is-fullheight" style="height: 100%;">
         <div class="tile is-parent" style="height: calc(0.75rem + 100%) !important;">
@@ -168,7 +169,7 @@
     </div>
 
     <!-- Profile Page -->
-    <div class="is-hidden" id="tab-5-content" style="height: calc(0.75rem + 100%);">
+    <div class="tab is-hidden" id="tab-5-content" style="height: calc(0.75rem + 100%);">
       <div class="tile is-ancestor is-fullheight" style="height: calc(0.75rem + 100%);">
         <div class="tile is-vertical is-4">
           <div class="tile is-parent is-vertical">
@@ -205,7 +206,7 @@
 
     <!-- Buttons to switch between tabs -->
     <div class="gradient-container">
-      <div class="tabs is-toggle is-fullwidth is-large hero-foot">
+      <div id="tabs" class="tabs is-toggle is-fullwidth is-large hero-foot is-hidden">
         <ul>
           <li id="tab-1" class="is-active">
             <a onClick="switchTo1()">
