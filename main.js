@@ -196,30 +196,15 @@ function switchTo5(node) {
         return;
     }
 
-    if(node == null) node = user1;
+    if(node == null) node == user1;
     
     removeActive();
     hideAll();
     $("#tab-5").addClass("is-active");
     $("#tab-5-content").removeClass("is-hidden");
 
-    $("#profile")[0].innerHTML = "";
-
-    $("#profile")[0].innerHTML += 
-        '<figure id="profile-picture" class="image">' +
-        '<img class="is-rounded" id="profile-photo"' +
-        'src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">' +
-        '<br><input type="file" id="my_file" style="display: none" ></figure>';
-
-        $("#profile")[0].innerHTML +=
-            '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
-            node +
-            "</p>";
     
-        $("img#profile-photo").on("click",function () {
-            // console.log("asdasda");
-            $("input#my_file").click();
-        });
+
 }
 
 function removeActive() {
@@ -242,7 +227,6 @@ function getSearchResults() {
 
     // get filter phrase from search bar
     var filter = $("#friend_search").val().toUpperCase();
-    console.log(filter)
 
     // filter and bucketize by (starts with filter), (contains filter)
     var startsWithFilter = [];
