@@ -1,183 +1,184 @@
 var nodes = [
-    {
-        name: "Arda",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Kyle",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Rachelle",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Chris",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Derek",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Ryan",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Mahesh",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Rochelle",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Annie",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Ann",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Vi",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Kiara",
-        group: 0,
-        level: 1,
-    },
-    {
-        name: "Grace",
-        group: 0,
-        level: 1,
-    },
+    // {
+    //     name: "Arda",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Kyle",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Rachelle",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Chris",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Derek",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Ryan",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Mahesh",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Rochelle",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Annie",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Ann",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Vi",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Kiara",
+    //     group: 0,
+    //     level: 1,
+    // },
+    // {
+    //     name: "Grace",
+    //     group: 0,
+    //     level: 1,
+    // },
 ];
 
 var links = [
-    {
-        target: "Arda",
-        source: "Kyle",
-        strength: 1,
-    },
-    {
-        target: "Rachelle",
-        source: "Chris",
-        strength: 0.9,
-    },
-    {
-        target: "Rachelle",
-        source: "Kyle",
-        strength: 0.5,
-    },
-    {
-        target: "Chris",
-        source: "Kyle",
-        strength: 0.6,
-    },
-    {
-        target: "Chris",
-        source: "Rochelle",
-        strength: 0.7,
-    },
-    {
-        target: "Rachelle",
-        source: "Rochelle",
-        strength: 0.9,
-    },
-    {
-        target: "Derek",
-        source: "Rochelle",
-        strength: 1.1,
-    },
-    {
-        target: "Derek",
-        source: "Ryan",
-        strength: 0.7,
-    },
-    {
-        target: "Mahesh",
-        source: "Ryan",
-        strength: 0.4,
-    },
-    {
-        target: "Mahesh",
-        source: "Derek",
-        strength: 0.7,
-    },
-    {
-        target: "Arda",
-        source: "Grace",
-        strength: 1,
-    },
-    {
-        target: "Arda",
-        source: "Ann",
-        strength: 0.9,
-    },
-    {
-        target: "Arda",
-        source: "Annie",
-        strength: 0.8,
-    },
-    {
-        target: "Arda",
-        source: "Vi",
-        strength: 0.8,
-    },
-    {
-        target: "Arda",
-        source: "Kiara",
-        strength: 0.4,
-    },
-    {
-        target: "Grace",
-        source: "Ann",
-        strength: 1,
-    },
-    {
-        target: "Grace",
-        source: "Annie",
-        strength: 0.4,
-    },
-    {
-        target: "Grace",
-        source: "Vi",
-        strength: 0.6,
-    },
-    {
-        target: "Grace",
-        source: "Kiara",
-        strength: 0.3,
-    },
-    {
-        target: "Kiara",
-        source: "Ann",
-        strength: 1,
-    },
-    {
-        target: "Kiara",
-        source: "Annie",
-        strength: 1,
-    },
-    {
-        target: "Kiara",
-        source: "Vi",
-        strength: 0.8,
-    },
+    // {
+    //     target: "Arda",
+    //     source: "Kyle",
+    //     strength: 1,
+    // },
+    // {
+    //     target: "Rachelle",
+    //     source: "Chris",
+    //     strength: 0.9,
+    // },
+    // {
+    //     target: "Rachelle",
+    //     source: "Kyle",
+    //     strength: 0.5,
+    // },
+    // {
+    //     target: "Chris",
+    //     source: "Kyle",
+    //     strength: 0.6,
+    // },
+    // {
+    //     target: "Chris",
+    //     source: "Rochelle",
+    //     strength: 0.7,
+    // },
+    // {
+    //     target: "Rachelle",
+    //     source: "Rochelle",
+    //     strength: 0.9,
+    // },
+    // {
+    //     target: "Derek",
+    //     source: "Rochelle",
+    //     strength: 1.1,
+    // },
+    // {
+    //     target: "Derek",
+    //     source: "Ryan",
+    //     strength: 0.7,
+    // },
+    // {
+    //     target: "Mahesh",
+    //     source: "Ryan",
+    //     strength: 0.4,
+    // },
+    // {
+    //     target: "Mahesh",
+    //     source: "Derek",
+    //     strength: 0.7,
+    // },
+    // {
+    //     target: "Arda",
+    //     source: "Grace",
+    //     strength: 1,
+    // },
+    // {
+    //     target: "Arda",
+    //     source: "Ann",
+    //     strength: 0.9,
+    // },
+    // {
+    //     target: "Arda",
+    //     source: "Annie",
+    //     strength: 0.8,
+    // },
+    // {
+    //     target: "Arda",
+    //     source: "Vi",
+    //     strength: 0.8,
+    // },
+    // {
+    //     target: "Arda",
+    //     source: "Kiara",
+    //     strength: 0.4,
+    // },
+    // {
+    //     target: "Grace",
+    //     source: "Ann",
+    //     strength: 1,
+    // },
+    // {
+    //     target: "Grace",
+    //     source: "Annie",
+    //     strength: 0.4,
+    // },
+    // {
+    //     target: "Grace",
+    //     source: "Vi",
+    //     strength: 0.6,
+    // },
+    // {
+    //     target: "Grace",
+    //     source: "Kiara",
+    //     strength: 0.3,
+    // },
+    // {
+    //     target: "Kiara",
+    //     source: "Ann",
+    //     strength: 1,
+    // },
+    // {
+    //     target: "Kiara",
+    //     source: "Annie",
+    //     strength: 1,
+    // },
+    // {
+    //     target: "Kiara",
+    //     source: "Vi",
+    //     strength: 0.8,
+    // },
 ];
+
 
 let selected = null
 $("#person-panel").hide()
@@ -189,6 +190,10 @@ $("#add-friend-from-graph").on("click" , ()=>{
         console.log("added "+ selected.name + " as friend to " + user1);
     }
 })
+
+function genGraphData() {
+
+}
 
 function getNeighbors(node) {
     return links.reduce(

@@ -82,7 +82,6 @@ function getFriends(name) {
     .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
-        id = doc.id
         friends = doc.data().friends
         return friends
       }
