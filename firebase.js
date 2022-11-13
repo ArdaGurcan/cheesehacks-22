@@ -50,23 +50,19 @@ function getData(snapshot) {
   return [nodes, links]
 }
 
-function getGraphData() {
+async function getGraphData(name) {
   let nodes = []
   let links = []
-  getDocs(userRef)// returns a promise
+  await getDocs(userRef)// returns a promise
     .then((snapshot) => {
       let data = getData(snapshot); // generate links and nodes
       nodes = data[0]
       links = data[1]
-      return [nodes, links]
-      // return something later or something like that
-      //DEBUGGING
-      // console.log(nodes)
-      // console.log(links)
     })
     .catch(err => { // If everything goes wrong
       console.log(err.message)
     })
+  return [nodes, links]
 }
 
 function addUser(name) {
@@ -77,7 +73,7 @@ function addUser(name) {
   })
 }
 
-async function getFriends(name) {
+export async function getFriends(name) {
   let friends = []
   await getDocs(userRef)
     .then((snapshot) => {
@@ -142,28 +138,26 @@ async function getCoordinates(name) {
   return data
 }
 
-function getFriendCoordinates(name) {
+async function getFriendCoordinates(name) {
   let friends = []
-  getDocs(userRef)
+  await getDocs(userRef)
     .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
         doc.data().friends.forEach((friend) => {
-            snapshot.docs.forEach((docFriend) => {
-              if(docFriend.data().name == friend) {
-                let friendcoords = {
-                  name: friend,
-                  longitude: docFriend.data().coordinates.longitude,
-                  latitude: docFriend.data().coordinates.latitude
-                }
-
-                friends.push(friendcoords)
+          snapshot.docs.forEach((docFriend) => {
+            if(docFriend.data().name == friend) {
+              let friendcoords = {
+                name: friend,
+                longitude: docFriend.data().coordinates.longitude,
+                latitude: docFriend.data().coordinates.latitude
               }
-            })
+              friends.push(friendcoords)
+            }
+          })
         })
       }
     })
-      // console.log(friends)
-      return friends
   })
+  return friends
 }
