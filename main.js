@@ -140,6 +140,7 @@ let auth = function () {
 
     authenticated = true;
 
+    genGraphData();
     getSearchResults();
 };
 // On authenticated (all cosmetics)
@@ -149,7 +150,8 @@ function switchTo1() {
     if (!authenticated) {
         return;
     }
-    centerUser();
+    centerUser()
+    // genGraphData()
     removeActive();
     hideAll();
     $("#tab-1").addClass("is-active");
@@ -183,6 +185,13 @@ function switchTo4() {
     $("#tab-4-content").removeClass("is-hidden");
 }
 
+function switchTo5() {
+    removeActive();
+    hideAll();
+    $("#tab-5").addClass("is-active");
+    $("#tab-5-content").removeClass("is-hidden");
+}
+
 function removeActive() {
     $("li").each(function () {
         $(this).removeClass("is-active");
@@ -194,6 +203,7 @@ function hideAll() {
     $("#tab-2-content").addClass("is-hidden");
     $("#tab-3-content").addClass("is-hidden");
     $("#tab-4-content").addClass("is-hidden");
+    $("#tab-5-content").addClass("is-hidden");
 }
 
 function getSearchResults() {
@@ -202,36 +212,42 @@ function getSearchResults() {
 
     // get filter phrase from search bar
     var filter = $("#friend_search").val().toUpperCase();
+    console.log(filter)
 
     // filter and bucketize by (starts with filter), (contains filter)
     var startsWithFilter = [];
     var containsFilter = [];
-    nodes.forEach(function (node) {
-        if(filter != null) {
-            var filterIndex = node.name.toUpperCase().indexOf(filter);
-            if(filterIndex == 0) {
-                startsWithFilter.push(node);
-            }
-            else if(filterIndex > -1) {
-                containsFilter.push(node);
-            }
-        }
-    });
 
+    getUsers().then((e) => {
+        console.log(e)
+        e.forEach(function (node) {
+            if(filter != null) {
+                var filterIndex = node.toUpperCase().indexOf(filter);
+                if(filterIndex == 0) {
+                    startsWithFilter.push(node);
+                }
+                else if(filterIndex > -1) {
+                    containsFilter.push(node);
+                }
+            }
+        });
+    
+        console.log(startsWithFilter)
+        // create buttons
+        startsWithFilter.forEach(function (node) {
+            createFriendButton(node);
+        });
+        containsFilter.forEach(function (node) {
+            createFriendButton(node);
+        });
+    })
 
-    // create buttons
-    startsWithFilter.forEach(function (node) {
-        createFriendButton(node);
-    });
-    containsFilter.forEach(function (node) {
-        createFriendButton(node);
-    });
 }
 
 function createFriendButton(node) {
-    if (user1 !== node.name)
+    if (user1 !== node)
         getFriends(user1).then((friends) => {
-            let alreadyFriends = friends.indexOf(node.name) != -1;
+            let alreadyFriends = friends.indexOf(node) != -1;
 
             $(".results")[0].innerHTML +=
                 '<div class="box result">' +
@@ -239,14 +255,14 @@ function createFriendButton(node) {
                 'onclick=\'addFriend(\"' +
                 user1 +
                 '","' +
-                node.name +
+                node +
                 '\").then(()=>{addFriendButtons()})\'' +
                 (alreadyFriends ? " disabled" : "") +
                 ">" +
                 '<span class="icon is-medium"><i class="fa fa-' +
                 (alreadyFriends ? "check-circle" : "plus-circle") +
                 '"></i></span></button>' +
-                node.name +
+                node +
                 "</div>";
         });
 }

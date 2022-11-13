@@ -19,6 +19,7 @@ initializeApp(firebaseConfig);
 const db = getFirestore();
 const userRef = collection(db, "Users")
 
+window.getUsers = getUsers
 window.getData = getData
 window.getGraphData = getGraphData
 window.addUser = addUser
@@ -35,6 +36,20 @@ window.getFriendCoordinates = getFriendCoordinates
 // getfriendCoordinates("Bob")
 // getFriends("Arda")
 
+async function getUsers() {
+  let users = []
+  await getDocs(userRef)// returns a promise
+    .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      users.push(doc.data().name)
+    })
+  })
+  .catch(err => { // If everything goes wrong
+    console.log(err.message)
+  })
+
+  return users
+}
 function getData(snapshot, name) {
   let nodes = []
   let links = []
