@@ -164,6 +164,7 @@ function switchTo1() {
         return;
     }
     centerUser();
+
     // genGraphData()
     removeActive();
     hideAll();
