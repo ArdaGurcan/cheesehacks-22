@@ -6,7 +6,7 @@
 // Your web app's Firebase configuration
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js'
 
-import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc, GeoPoint } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js'
+import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc, GeoPoint, onSnapshot } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js'
 const firebaseConfig = {
   apiKey: "AIzaSyDPJ40d-kw7sPJHgqLpioppem3iSe-aDSQ",
   authDomain: "social-ec643.firebaseapp.com",
@@ -169,8 +169,21 @@ async function addFriend(name, friend) {
 async function updateCoordinates(name, x, y) {
   console.log("called")
   let id = ""
-  getDocs(userRef)
-    .then((snapshot) => {
+  // getDocs(userRef)
+  //   .then((snapshot) => {
+  //   snapshot.docs.forEach((doc) => {
+  //     if(doc.data().name == name) {
+  //       id = doc.id
+  //     }
+  //     })
+  //   let docRef = doc(db, 'Users', id)
+
+  //   updateDoc(docRef, {
+  //       coordinates: new GeoPoint(x, y)
+  //   })
+  // })
+
+  onSnapshot(userRef, (snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
         id = doc.id
@@ -181,6 +194,7 @@ async function updateCoordinates(name, x, y) {
     updateDoc(docRef, {
         coordinates: new GeoPoint(x, y)
     })
+
   })
 }
 window.updateCoordinates = updateCoordinates;
