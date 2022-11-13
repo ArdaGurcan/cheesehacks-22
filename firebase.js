@@ -156,7 +156,7 @@ async function addFriend(name, friend) {
   console.log(friend + ' added as friend of ' + name);
 }
 
-function updateCoordinates(name, x, y) {
+export function updateCoordinates(name, x, y) {
   let id = ""
   getDocs(userRef)
     .then((snapshot) => {

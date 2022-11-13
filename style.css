@@ -1,3 +1,5 @@
+@import "node_modules/ol/ol.css";
+
 :root {
   --fg-gradient: -80deg, #12c2e9 -10%, #c471ed 20%, #f64f59;
   --bg-gradient: to top, #ece9e6, #ffffff;
@@ -132,4 +134,11 @@ section {
   float: right;
   bottom: 0.45rem;
     right: -0.35rem;
+}
+
+#map {
+  position: absolute;
+  bottom: 4.75rem ;
+  width: 100%;
+  height: calc(100% - 4.75rem);
 }
