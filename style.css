@@ -128,6 +128,7 @@ section {
 }
 
 .add-friend {
-  position: absolute; 
-  right: 1rem;
+  /* position: absolute;  */
+  float: right;
+  /* right: 1rem; */
 }

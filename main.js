@@ -23,21 +23,20 @@ $("#up").on("click", function (e) {
     user.create($("#alias").val(), $("#pass").val(), (ack) => {
         if (ack.ok === 0) {
             addUser($("#alias").val());
-            console.log($("#alias").val() + ": " + $("#pass").val() + " signed up");
+            console.log(
+                $("#alias").val() + ": " + $("#pass").val() + " signed up"
+            );
+        } else {
+            $("#error").text(ack.err);
         }
-        else {
-            $("#error").text(ack.err)
-        }
-
     });
-    
+
     // console.log
     // Log sign-up to console
 });
 
 // On sign in
 $("#sign").on("submit", function (e) {
-
     // Prevent page refresh
     e.preventDefault();
 
@@ -47,30 +46,28 @@ $("#sign").on("submit", function (e) {
     // Log sign-in to console
     console.log($("#alias").val() + ": " + $("#pass").val() + " signed in");
     gun.get(channelName).map().once(Log);
-
 });
 
 // On receiver set
-$("#receiver").change( function (e) {
-
+$("#receiver").change(function (e) {
     // Prevent page refresh
     e.preventDefault();
 
     // Set user2's name
     user2 = $("#user2").val();
-    
+
     // user.get('friends').set("friend1");
 
     // Cosmetics
-        // Display receiver in h4 tag
-        $("#rh").text(user2);
-        
-        // Make chat form visible
-        $("#msg").show();
+    // Display receiver in h4 tag
+    $("#rh").text(user2);
+
+    // Make chat form visible
+    $("#msg").show();
 
     // Set the channel name to combination of usernames
     channelName = user1 < user2 ? user1 + user2 : user2 + user1;
-    
+
     // Pull up all messages in channel
     $("ul#messages")[0].innerHTML = "";
     gun.get(channelName).map().once(Li);
@@ -78,7 +75,7 @@ $("#receiver").change( function (e) {
 
 // On message sent
 $("#said").on("submit", function (e) {
-        console.log("AAA")
+    console.log("AAA");
     // Prevent page refresh
     e.preventDefault();
 
@@ -86,7 +83,7 @@ $("#said").on("submit", function (e) {
     if (!user.is) return;
 
     // Add message to channel
-    console.log(channelName)
+    console.log(channelName);
     gun.get(channelName).set(user1 + ": " + $("#say").val());
 
     // Log message to console
@@ -97,21 +94,22 @@ $("#said").on("submit", function (e) {
 // Update UI
 function Log(say, id) {
     console.log(say + " " + id);
-
 }
 
 function Li(say, id) {
-    // If li element with messageID doesn't exist 
-    let li = $("#" + id).get(0) 
-    // Add message to ul
-    || $("<li>").attr("id", id).appendTo("ul#messages");
+    // If li element with messageID doesn't exist
+    let li =
+        $("#" + id).get(0) ||
+        // Add message to ul
+        $("<li>").attr("id", id).appendTo("ul#messages");
     $(li).text(say);
 }
 
-function Dropdown(item, id){
-    let option = $("#" + id).get(0) 
-    // Add message to ul
-    || $("<option>").attr("id", id).attr("value", item).appendTo("#user2");
+function Dropdown(item, id) {
+    let option =
+        $("#" + id).get(0) ||
+        // Add message to ul
+        $("<option>").attr("id", id).attr("value", item).appendTo("#user2");
     $(option).text(item);
     user2 = $("#user2").val();
     channelName = user1 < user2 ? user1 + user2 : user2 + user1;
@@ -119,32 +117,29 @@ function Dropdown(item, id){
 
 // On authenticated (all cosmetics)
 gun.on("auth", function () {
-    
     // Set user1's name
     user1 = $("#alias").val();
-    
+
     // Cosmetics
-        // Hide login form
-        $("#sign").hide();
+    // Hide login form
+    $("#sign").hide();
 
-        // Show choose recipient form
-        $("#msg").show();
-
-
+    // Show choose recipient form
+    $("#msg").show();
 
     user.get("friends").map().once(Dropdown);
     user.get("friends").map().once(Log);
-    
+
     // Log authed to console
     console.log("authenticated");
-    
+
     authenticated = true;
 
     addFriendButtons();
 });
 
 function switchTo1() {
-    if(!authenticated) {
+    if (!authenticated) {
         return;
     }
     removeActive();
@@ -154,7 +149,7 @@ function switchTo1() {
 }
 
 function switchTo2() {
-    if(!authenticated) {
+    if (!authenticated) {
         return;
     }
     removeActive();
@@ -164,7 +159,7 @@ function switchTo2() {
 }
 
 function switchTo3() {
-    if(!authenticated) {
+    if (!authenticated) {
         return;
     }
     removeActive();
@@ -180,7 +175,6 @@ function switchTo4() {
     $("#tab-4-content").removeClass("is-hidden");
 }
 
-
 function removeActive() {
     $("li").each(function () {
         $(this).removeClass("is-active");
@@ -195,10 +189,21 @@ function hideAll() {
 }
 
 function addFriendButtons() {
-    nodes.forEach(function(node) {
-        $(".results")[0].innerHTML += '<div class="box result">' +
-        '<button class="add-friend is-info button is-right"' + 
-        'onclick=addFriend("' + user1 + '","' + node.name +'")>' +
-        'Add as Friend</button>' + node.name + '</div>'
+    nodes.forEach(function (node) {
+        if (user1 !== node.name)
+        console.log(getFriends(user1))
+            $(".results")[0].innerHTML +=
+                '<div class="box result">' +
+                '<button class="add-friend is-info button is-right"' +
+                'onclick=addFriend("' +
+                user1 +
+                '","' +
+                node.name +
+                '")>' +
+                '<span class="icon is-medium"><i class="fa fa-' +
+                // (getFriends(user1).indexOf(node.name) == -1 ? "plus-circle" : "check-circle") +
+                '"></i></span></button>' +
+                node.name +
+                "</div>";
     });
 }
