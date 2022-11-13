@@ -35,18 +35,46 @@ window.getFriendCoordinates = getFriendCoordinates
 // getfriendCoordinates("Bob")
 // getFriends("Arda")
 
-function getData(snapshot) {
+function getData(snapshot, name) {
   let nodes = []
   let links = []
 
   snapshot.docs.forEach((doc) => {
-    let user = { name: doc.data().name } // user format
-    nodes.push(user)
-    doc.data().friends.forEach((friend) => {
-      let link = {target: friend, source: doc.data().name, strength: 1} // link format
-      links.push(link)
-    })
+    if(doc.data().name == name) {
+      let user = { name: doc.data().name } // user format
+      nodes.push(user)
+      doc.data().friends.forEach((friend) => {
+        let friendNode = {name: friend}
+        nodes.push(friendNode)
+        let link = {target: friend, source: doc.data().name, strength: 1} // link format
+        links.push(link)
+        snapshot.docs.forEach((docFriend1) => {
+          if(docFriend1.data().name == friend) {
+            docFriend1.data().friends.forEach((friend1) => {
+            let friend1Node = {name: friend1}
+            nodes.push(friend1Node)
+            let friendlink = {target: friend1, source: docFriend1.data().name, strength: 1} // link format
+            links.push(friendlink)
+            snapshot.docs.forEach((docFriend2) => {
+                if(docFriend2.data().name == friend1) {
+                  docFriend2.data().friends.forEach((friend2) => {
+                    let friend2Node = {name: friend2}
+                    nodes.push(friend2Node)
+                    let friendlink = {target: friend1, source: docFriend2.data().name, strength: 1} // link format
+                    links.push(friendlink)
+                  })
+                }
+              })
+            })
+          }
+        })
+      })
+    }
   })
+  links = new Set(links)
+  nodes = new Set(nodes)
+  links = Array.from(links)
+  nodes = Array.from(nodes)
   return [nodes, links]
 }
 
@@ -55,7 +83,8 @@ async function getGraphData(name) {
   let links = []
   await getDocs(userRef)// returns a promise
     .then((snapshot) => {
-      let data = getData(snapshot); // generate links and nodes
+      let data = getData(snapshot, name); // generate links and nodes
+      // console.log(data)
       nodes = data[0]
       links = data[1]
     })
@@ -73,7 +102,7 @@ function addUser(name) {
   })
 }
 
-export async function getFriends(name) {
+async function getFriends(name) {
   let friends = []
   await getDocs(userRef)
     .then((snapshot) => {
