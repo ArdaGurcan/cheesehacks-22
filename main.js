@@ -164,6 +164,7 @@ function switchTo1() {
         return;
     }
     centerUser();
+
     // genGraphData()
     removeActive();
     hideAll();
@@ -244,6 +245,7 @@ function switchTo5(node) {
     })
 
 }
+window.switchTo5 = switchTo5;
 
 function removeActive() {
     $("li").each(function () {

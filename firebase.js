@@ -186,7 +186,7 @@ async function addFriend(name, friend) {
 }
 
 async function updateCoordinates(name, x, y) {
-  console.log("called")
+  //console.log("called")
   let id = ""
   // getDocs(userRef)
   //   .then((snapshot) => {
