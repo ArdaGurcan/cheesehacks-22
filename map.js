@@ -11,7 +11,10 @@ import { createOrUpdateFromCoordinates } from "ol/extent";
 import getFriends from "/firebase.js";
 import updateCoordinates from "/firebase.js";
 
-$(document).ready(() => {
+let map;
+
+
+window.ready = () => {
     setTimeout(() => {
         let view = new View({
             center: [0, 0],
@@ -20,8 +23,8 @@ $(document).ready(() => {
 
         let vectorsource = new VectorSource();
         console.log("fiusaif;auwh");
-
-        const map = new Map({
+        if(!map)
+        map = new Map({
             target: "map",
             view: view,
             layers: [
@@ -103,5 +106,6 @@ $(document).ready(() => {
             const lonlat = toLonLat(coordinates);
             updateCoordinates(user1, lonlat);
         });
-    }, 2000);
-});
+    }, 3500);
+}
+// $(document).ready(() => {ready()});
