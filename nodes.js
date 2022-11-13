@@ -308,7 +308,7 @@ function selectNode(selectedNode) {
     simulation.force("link").links(links);
     $("#panel-person-name").text(selectedNode.name)
     $("#person-panel").show()
-    selected = selectedNodex;
+    selected = selectedNode;
 }
 
 var linkElements = svg
