@@ -113,8 +113,12 @@ select.is-focused,
 select #user2:active,
 select #user2:focus,
 .textarea:active,
-.textarea:focus {
+.textarea:focus,
+.select select.is-active, .select select.is-focused, .select select:active, .select select:focus,
+:focus-visible {
   outline: 0 !important;
+  box-shadow: none !important;
+  /* background-color: #ddd !important; */
 }
 
 .tile.is-parent>article {
