@@ -56,8 +56,9 @@ function drawFriends(friends) {
   return vectorsource;
 }
 
-getFriends(window.user1).then((Array) => {
-  vectorsource = drawFriends(Array);
+getFriends(window.user1).then((friends) => {
+  console.log("Friends: " + friends)
+  vectorsource = drawFriends(friends);
 });
 
 self = new Feature(new Point([0, 0]));
