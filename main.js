@@ -262,7 +262,7 @@ function createFriendButton(node) {
                 user1 +
                 '","' +
                 node +
-                '\").then(()=>{addFriendButtons()})\'' +
+                '\").then(()=>{createFriendButton()})\'' +
                 (alreadyFriends ? " disabled" : "") +
                 ">" +
                 '<span class="icon is-medium"><i class="fa fa-' +

@@ -11,7 +11,7 @@ $("#friend_search").on("input", () => {
 $("#add-friend-from-graph").on("click", () => {
     if (selected != null) {
         addFriend(user1, selected.name).then(() => {
-            addFriendButtons();
+            createFriendButton();
             auth();
         });
         console.log("added " + selected.name + " as friend to " + user1);
