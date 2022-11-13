@@ -1,3 +1,5 @@
+const { update } = require("js13k-ecs");
+
 // Define gun instance
 let gun = Gun([
     "http://77.68.15.151:1234/gun",
@@ -22,6 +24,7 @@ function readURL(input) {
             $("#profile-photo").attr("src", e.target.result);
             // .width(200)
             // .height(200);
+            updatePfp()
             console.log(e.target.result);
         };
 

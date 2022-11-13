@@ -191,6 +191,10 @@ background-color: rgba(0, 116, 116, 0.1) !important;
   transition: all .3s ease-in-out;
 }
 
+#sign{
+  margin: 1.25rem;
+}
+
 #profile-picture {
   /* display: block; */
   margin-left: auto;
