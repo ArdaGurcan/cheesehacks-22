@@ -99,15 +99,23 @@ function getData(snapshot, name) {
    return nodes.find(a => a.name === name)
  })
 
-  links = links.reduce((acc, current) => {
-    const source = acc.find(item => item.source === current.source);
-    const target = acc.find(item => item.target === current.target);
-    if (!source || !target) {
-      return acc.concat([current]);
-    } else {
-      return acc;
-    }
-  }, []);
+  links = links.filter((value, index, self) =>
+  index === self.findIndex((t) => (
+    (t.source === value.source && t.target === value.target) 
+    // ||
+    // (t.source === value.target && t.target === value.source)
+  ))
+  )
+
+  // links = links.reduce((acc, current) => {
+  //   const source = acc.find(item => item.source === current.source);
+  //   const target = acc.find(item => item.target === current.target);
+  //   if (!source || !target) {
+  //     return acc.concat([current]);
+  //   } else {
+  //     return acc;
+  //   }
+  // }, []);
 
   return [nodes, links]
 }
