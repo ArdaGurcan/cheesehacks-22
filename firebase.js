@@ -82,13 +82,14 @@ function getFriends(name) {
     .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
-        id = doc.id
         friends = doc.data().friends
         return friends
       }
     })
   })
 }
+
+
 function addFriend(name, friend) {
   let id = ""
   let friends = []
@@ -107,6 +108,7 @@ function addFriend(name, friend) {
       friends: friends
     })
   })
+  console.log(friend + ' added as friend of ' + name);
 }
 
 function updateCoordinates(name, x, y) {

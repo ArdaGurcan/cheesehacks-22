@@ -179,6 +179,7 @@ var links = [
     },
 ];
 
+
 let selected = null
 $("#person-panel").hide()
 
@@ -189,6 +190,35 @@ $("#add-friend-from-graph").on("click" , ()=>{
         console.log("added "+ selected.name + " as friend to " + user1);
     }
 })
+
+let userNode = null;
+
+function setUserNode() {
+  nodes.forEach(function (node) {
+    if(node.name == user1) {
+      userNode = node
+    }
+  })
+}
+
+function centerUser() {
+  nodeElements.attr("cx", function (node) {
+      if (node.name == userNode.name) {
+          return width / 2;
+      }
+      return node.x;
+  });
+  nodeElements.attr("cy", function (node) {
+      if (node.name == userNode.name) {
+          return height / 2;
+      }
+      return node.y;
+  });
+}
+
+function genGraphData() {
+
+}
 
 function getNeighbors(node) {
     return links.reduce(
@@ -283,18 +313,18 @@ var dragDrop = d3
 function selectNode(selectedNode) {
     var neighbors = getNeighbors(selectedNode);
 
-    nodeElements.attr("cx", function (node) {
-        if (node.name == user1) {
-            return width / 2;
-        }
-        return node.x;
-    });
-    nodeElements.attr("cy", function (node) {
-        if (node.name == user1) {
-            return height / 2;
-        }
-        return node.y;
-    });
+    // nodeElements.attr("cx", function (node) {
+    //     if (node.name == user1) {
+    //         return width / 2;
+    //     }
+    //     return node.x;
+    // });
+    // nodeElements.attr("cy", function (node) {
+    //     if (node.name == user1) {
+    //         return height / 2;
+    //     }
+    //     return node.y;
+    // });
     // we modify the styles to highlight selected nodes
     nodeElements.attr("fill", function (node) {
         return getNodeColor(node, neighbors);
@@ -367,44 +397,44 @@ var nodeElements = svg
 simulation.nodes(nodes).on("tick", () => {
     nodeElements
         .attr("cx", function (node) {
-            if (node.name == user1)
+            if (node.name == userNode.name)
                 return width / 2;
             return node.x;
         })
         .attr("cy", function (node) {
-            if (node.name == user1)
+            if (node.name == userNode.name)
                 return height / 2;
             return node.y;
         });
     textElements
         .attr("x", function (node) {
-            if (node.name == user1)
+            if (node.name == userNode.name)
                 return width / 2;
             return node.x;
         })
         .attr("y", function (node) {
-            if (node.name == user1)
+            if (node.name == userNode.name)
                 return height / 2;
             return node.y;
         });
     linkElements
         .attr("x1", function (link) {
-            if (link.source.name == user1)
+            if (link.source.name == userNode.name)
                 return width / 2;
             return link.source.x;
         })
         .attr("y1", function (link) {
-            if (link.source.name == user1)
+            if (link.source.name == userNode.name)
                 return height / 2;
             return link.source.y;
         })
         .attr("x2", function (link) {
-            if (link.target.name == user1)
+            if (link.target.name == userNode.name)
                 return width / 2;
             return link.target.x;
         })
         .attr("y2", function (link) {
-            if (link.target.name == user1)
+            if (link.target.name == userNode.name)
                 return height / 2;
             return link.target.y;
         });
