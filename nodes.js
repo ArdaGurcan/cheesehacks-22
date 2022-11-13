@@ -158,6 +158,9 @@ function selectNode(selectedNode) {
         if (alreadyFriends) {
             $("#add-friend-from-graph").prop("disabled", true);
             $("#add-friend-from-graph").text("Already Friends");
+        } else if (user1 == selectedNode.name) {
+            $("#add-friend-from-graph").prop("disabled", true);
+            $("#add-friend-from-graph").text("That's you, dummy!");
         } else {
             $("#add-friend-from-graph").prop("disabled", false);
             $("#add-friend-from-graph").text("Add Friend");
