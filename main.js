@@ -203,7 +203,29 @@ function switchTo5(node) {
     $("#tab-5").addClass("is-active");
     $("#tab-5-content").removeClass("is-hidden");
 
-    
+    // display profile
+    $("#profile")[0].innerHTML = "";
+
+    $("#profile")[0].innerHTML += 
+        '<figure id="profile-picture" class="image">' +
+        '<img class="is-rounded"' +
+        'src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">' +
+        '</figure>' +
+        '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
+        user1 +
+        '</p>';
+
+    // display profile
+    $("#friends-list")[0].innerHTML = "";
+    $("#friends-list")[0].innerHTML += 
+        '<p class="title">Friends:</p>';
+    getFriends(node).then((friends) => {
+        console.log(friends)
+        friends.forEach(function(friend) {
+            $("#friends-list")[0].innerHTML += 
+            '<p class="subtitle">' + friend + '</p>';
+        });
+    })
 
 }
 
