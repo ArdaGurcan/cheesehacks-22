@@ -192,7 +192,7 @@ background-color: rgba(0, 116, 116, 0.1) !important;
 }
 
 #profile-picture {
-  display: block;
+  /* display: block; */
   margin-left: auto;
   margin-right: auto;
   height: 60%;
@@ -200,6 +200,7 @@ background-color: rgba(0, 116, 116, 0.1) !important;
 }
 
 .text-c {
+  margin-top: 1rem;
   text-align: center;
 }
 
