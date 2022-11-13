@@ -39,6 +39,7 @@
 .notification.is-info {
   color: #ddd !important;
 }
+
 #tabs-with-content .tabs:not(:last-child) {
   margin-bottom: 0;
 }
@@ -71,6 +72,10 @@ section {
 div.tile.is-parent>article>div>p,
 #rh {
   color: #ddd !important;
+}
+
+.button:active, .button:focus, .file-cta:active, .file-cta:focus, .file-name:active, .file-name:focus, .input:active, .input:focus, .is-active.button, .is-active.file-cta, .is-active.file-name, .is-active.input, .is-active.pagination-ellipsis, .is-active.pagination-link, .is-active.pagination-next, .is-active.pagination-previous, .is-active.textarea, .is-focused.button, .is-focused.file-cta, .is-focused.file-name, .is-focused.input, .is-focused.pagination-ellipsis, .is-focused.pagination-link, .is-focused.pagination-next, .is-focused.pagination-previous, .is-focused.textarea, .pagination-ellipsis:active, .pagination-ellipsis:focus, .pagination-link:active, .pagination-link:focus, .pagination-next:active, .pagination-next:focus, .pagination-previous:active, .pagination-previous:focus, .select select.is-active, .select select.is-focused, .select select #user2:active, .select select #user2:focus, .textarea:active, .textarea:focus {
+  outline: 0 !important;
 }
 
 .tile.is-parent>article {
@@ -169,19 +174,18 @@ hero.is-light .tabs a {
   background-repeat: no-repeat !important;
 }
 
-#in.button.is-primary
-{
+#in.button.is-primary {
   background: linear-gradient(var(--fg-gradient));
   background-repeat: no-repeat !important;
   background: -moz-linear-gradient(var(--fg-gradient));
   background: -webkit-linear-gradient(var(--fg-gradient));
   background-size: 210% 100% !important;
   color: #1c1b22 !important
-
 }
 
 
-.ol-zoom-out, .ol-zoom-in {
+.ol-zoom-out,
+.ol-zoom-in {
   background-color: #0f0e12 !important;
   color: #ddd !important;
   /* border-color: #1c1b22 !important; */
@@ -198,8 +202,8 @@ hero.is-light .tabs a {
   color: #1c1b22 !important
 }
 
-#speak > span.icon.is-medium > i.fa.fa-paper-plane {
-  color:#2d2d37 !important
+#speak>span.icon.is-medium>i.fa.fa-paper-plane {
+  color: #2d2d37 !important
 }
 
 .search {
@@ -333,7 +337,8 @@ section {
 
 } */
 
-#user2>option, #profile-name {
+#user2>option,
+#profile-name {
   color: #ddd !important;
 
 }
@@ -410,14 +415,15 @@ form#said {
   cursor: pointer
 }
 
-#friends-list > p {
+#friends-list>p {
   margin-bottom: 1rem;
 }
 
 #friends-list {
- margin-top: 2.5rem;
- margin-left: 2rem;
+  margin-top: 2.5rem;
+  margin-left: 2rem;
 }
+
 /* #profile-photo {
   width: auto;
   aspect-ratio: 1/1;
