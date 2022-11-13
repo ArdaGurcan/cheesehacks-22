@@ -236,13 +236,14 @@ function switchTo5(node) {
     });;
     // display friends
     $("#friends-list")[0].innerHTML = "";
-    $("#friends-list")[0].innerHTML += 
+    $("#friends-list")[0].innerHTML +=
         '<p class="title">Friends:</p>';
     getFriends(node).then((friends) => {
         console.log(friends)
         friends.forEach(function(friend) {
-            $("#friends-list")[0].innerHTML += 
-            '<p class="subtitle">' + friend + '</p>';
+            $("#friends-list")[0].innerHTML +=
+            '<button class="button is-text"' +  "onclick='switchTo5(\"" + friend + "\")'>" + friend + '</button>';
+            // '<p class="subtitle">' + friend + '</p>';
         });
     })
 
