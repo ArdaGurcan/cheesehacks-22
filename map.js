@@ -16,7 +16,7 @@ let map;
 window.ready = () => {
     setTimeout(() => {
         let view = new View({
-            center: [0, 0],
+            center: [-89, 43],
             zoom: 15,
         });
 
@@ -56,7 +56,7 @@ window.ready = () => {
                 let feature = new Feature(
                     new Point(
                         fromLonLat(
-                            [friends[f]["longitude"], friends[f]["latitude"]],
+                            [friends[f]["latitude"], friends[f]["longitude"]],
                             proj
                         )
                     )
@@ -74,8 +74,8 @@ window.ready = () => {
           drawFriends(array);
         });
 
-        self = new Feature(new Point([0, 0]));
-        vectorsource.addFeature(self);
+        //self = new Feature(new Point([0, 0]));
+        //vectorsource.addFeature(self);
 
         map.addLayer(
             new VectorLayer({
@@ -101,8 +101,8 @@ window.ready = () => {
 
         geolocation.on("change:position", function () {
             const coordinates = geolocation.getPosition();
-            self.setGeometry(coordinates ? new Point(coordinates) : null);
-            view.setCenter(coordinates);
+            //self.setGeometry(coordinates ? new Point(coordinates) : null);
+            //view.setCenter(coordinates);
             const lonlat = toLonLat(coordinates);
             console.log(lonlat)
             updateCoordinates(user1, lonlat[0], lonlat[1]);

@@ -192,7 +192,7 @@ async function getCoordinates(name) {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
           // console.log([doc.data().coordinates.longitude, doc.data().coordinates.latitude])
-          data = [doc.data().coordinates.longitude, doc.data().coordinates.latitude]
+          data = [doc.data().coordinates.latitude, doc.data().coordinates.longitude]
       }
     })
   })
