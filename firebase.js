@@ -201,8 +201,7 @@ window.updateCoordinates = updateCoordinates;
 
 async function getCoordinates(name) {
   let data = ""
-  await getDocs(userRef)
-    .then((snapshot) => {
+  await onSnapshot(userRef, (snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
           // console.log([doc.data().coordinates.longitude, doc.data().coordinates.latitude])
@@ -214,8 +213,7 @@ async function getCoordinates(name) {
 }
  export default async function getFriendCoordinates(name) {
   let friends = []
-  await getDocs(userRef)
-    .then((snapshot) => {
+  await onSnapshot(userRef, (snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
         doc.data().friends.forEach((friend) => {
