@@ -191,19 +191,22 @@ function hideAll() {
 function addFriendButtons() {
     nodes.forEach(function (node) {
         if (user1 !== node.name)
-        console.log(getFriends(user1))
-            $(".results")[0].innerHTML +=
-                '<div class="box result">' +
-                '<button class="add-friend is-info button is-right"' +
-                'onclick=addFriend("' +
-                user1 +
-                '","' +
-                node.name +
-                '")>' +
-                '<span class="icon is-medium"><i class="fa fa-' +
-                // (getFriends(user1).indexOf(node.name) == -1 ? "plus-circle" : "check-circle") +
-                '"></i></span></button>' +
-                node.name +
-                "</div>";
+            getFriends(user1).then((e) => {
+                $(".results")[0].innerHTML +=
+                    '<div class="box result">' +
+                    '<button class="add-friend is-info button is-right"' +
+                    'onclick=addFriend("' +
+                    user1 +
+                    '","' +
+                    node.name +
+                    '")>' +
+                    '<span class="icon is-medium"><i class="fa fa-' +
+                    (e.indexOf(node.name) == -1
+                        ? "plus-circle"
+                        : "check-circle") +
+                    '"></i></span></button>' +
+                    node.name +
+                    "</div>";
+            });
     });
 }
