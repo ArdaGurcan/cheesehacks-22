@@ -106,6 +106,7 @@ window.ready = () => {
           if (map.hasFeatureAtPixel) {
             console.log(map.getFeaturesAtPixel(evt.pixel))
             var feature = map.getFeaturesAtPixel(evt.pixel)[0];
+            // console.log(feature.getStyle().getText().getText())
             switchTo5(feature.getStyle().getText().getText());
           }
         });

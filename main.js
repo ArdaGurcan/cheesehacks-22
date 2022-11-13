@@ -270,6 +270,7 @@ function switchTo5(node) {
       interval = null
     }
 
+    console.log(node)
     if (node == null) node = user1;
 
     removeActive();
@@ -305,10 +306,10 @@ function switchTo5(node) {
     // window.getPfp() = getPfp;
 
     // display friends
-    $("#friends-list")[0].innerHTML = "";
-    $("#friends-list")[0].innerHTML += '<p class="title">Friends:</p>';
     getFriends(node).then((friends) => {
         console.log(friends);
+        $("#friends-list")[0].innerHTML = "";
+        $("#friends-list")[0].innerHTML += '<p class="title">Friends:</p>';
         friends.forEach(function (friend) {
             $("#friends-list")[0].innerHTML +=
                 '<h1 class="friend"' +
@@ -321,7 +322,7 @@ function switchTo5(node) {
         });
     });
 }
-window.switchTo5 = switchTo5;
+// window.switchTo5 = switchTo5;
 
 function removeActive() {
     $("li").each(function () {
