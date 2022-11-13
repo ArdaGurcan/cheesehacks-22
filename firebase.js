@@ -6,15 +6,17 @@
 // Your web app's Firebase configuration
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js'
 
-import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc, GeoPoint, onSnapshot } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js'
+import { getFirestore, collection, doc, getDocs, addDoc, getDoc, updateDoc, GeoPoint } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js'
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDPJ40d-kw7sPJHgqLpioppem3iSe-aDSQ",
-  authDomain: "social-ec643.firebaseapp.com",
-  projectId: "social-ec643",
-  storageBucket: "social-ec643.appspot.com",
-  messagingSenderId: "362501994128",
-  appId: "1:362501994128:web:7aafb81cbfc4c0c8e6ca15"
+  apiKey: "AIzaSyBIx0YR9Ihw_tUgEZaWELhVW0WFz86eRiU",
+  authDomain: "link-412fb.firebaseapp.com",
+  projectId: "link-412fb",
+  storageBucket: "link-412fb.appspot.com",
+  messagingSenderId: "67367116080",
+  appId: "1:67367116080:web:b6eaecc447b6db9a0a3cf5"
 };
+
 initializeApp(firebaseConfig);
 const db = getFirestore();
 const userRef = collection(db, "Users")
@@ -215,7 +217,8 @@ async function updateCoordinates(name, x, y) {
   //   })
   // })
 
-  onSnapshot(userRef, (snapshot) => {
+  getDocs(userRef)
+    .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
         id = doc.id
@@ -233,7 +236,8 @@ window.updateCoordinates = updateCoordinates;
 
 async function getCoordinates(name) {
   let data = ""
-  await onSnapshot(userRef, (snapshot) => {
+  await getDocs(userRef)
+    .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
           // console.log([doc.data().coordinates.longitude, doc.data().coordinates.latitude])
@@ -245,7 +249,8 @@ async function getCoordinates(name) {
 }
  export default async function getFriendCoordinates(name) {
   let friends = []
-  await onSnapshot(userRef, (snapshot) => {
+  await getDocs(userRef)
+    .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
         doc.data().friends.forEach((friend) => {
