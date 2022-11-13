@@ -86,12 +86,15 @@ function getData(snapshot, name) {
       })
     }
   })
-  links = new Set(links)
-  nodes = new Set(nodes)
-  // links = links.filter(checkCopies)
-  // nodes = nodes.filter()
-  links = Array.from(links)
-  nodes = Array.from(nodes)
+  // links = new Set(links)
+  // nodes = new Set(nodes)
+  // links = Array.from(links)
+  // nodes = Array.from(nodes)
+  nodes = Array.from(new Set(nodes.map(a => a.name)))
+   .map(name => {
+   return nodes.find(a => a.name === name)
+ })
+
   return [nodes, links]
 }
 
