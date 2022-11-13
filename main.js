@@ -223,7 +223,7 @@ function switchTo5(node) {
         '<figure id="profile-picture" class="image">' +
         '<img class="is-rounded" id="profile-photo"' +
         'src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">' +
-        '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(this);" style="display:none"></figure>';
+        '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(' + node + ', this);" style="display:none"></figure>';
 
     $("#profile")[0].innerHTML +=
         '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
