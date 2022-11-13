@@ -215,4 +215,10 @@ background-color: rgba(0, 116, 116, 0.1) !important;
   text-align: center;
 }
 
+#messages {
+  height: 70vh;
+  overflow: auto;
+  overscroll-behavior-y: contain;
+}
+
 
