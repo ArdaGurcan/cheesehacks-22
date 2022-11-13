@@ -186,8 +186,13 @@ $("#person-panel").hide()
 $("#add-friend-from-graph").on("click" , ()=>{
     if (selected != null) {
 
-        addFriend(user1, selected.name)
+        addFriend(user1, selected.name).then(() => {
+            addFriendButtons()
+
+        })
         console.log("added "+ selected.name + " as friend to " + user1);
+        $("#add-friend-from-graph").prop("disabled", true)
+        $("#add-friend-from-graph").text("Already Friends")
     }
 })
 
@@ -327,8 +332,23 @@ function selectNode(selectedNode) {
     });
     simulation.force("link").links(links);
     $("#panel-person-name").text(selectedNode.name)
-    $("#person-panel").show()
+
+    getFriends(user1).then((e) => {
+        let alreadyFriends = e.indexOf(selectedNode.name) != -1;
+        if (alreadyFriends) {
+            
+            $("#add-friend-from-graph").prop("disabled", true)
+            $("#add-friend-from-graph").text("Already Friends")
+        } else {
+            $("#add-friend-from-graph").prop("disabled", false)
+            $("#add-friend-from-graph").text("Add Friend")
+
+        }
+        $("#person-panel").show()
+        
+    })
     selected = selectedNode;
+    //$("#add-friend-from-graph")
 }
 
 var linkElements = svg
