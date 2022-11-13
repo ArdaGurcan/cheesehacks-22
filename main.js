@@ -89,12 +89,12 @@ $("#receiver").change(function (e) {
 
     // Pull up all messages in channel
     $("ul#messages")[0].innerHTML = "";
-    gun.get(channelName).map().once(Li);
+    gun.get(channelName).map().once(Li)
+
 });
 
 // On message sent
 $("#said").on("submit", function (e) {
-    console.log("AAA");
     // Prevent page refresh
     e.preventDefault();
 
@@ -103,10 +103,14 @@ $("#said").on("submit", function (e) {
 
     // Add message to channel
     console.log(channelName);
-    gun.get(channelName).set(user1 + ": " + $("#say").val());
+    gun.get(channelName).set(user1 + ": " + $("#say").val()).then(()=>{
+
+        $("#messages").scrollTop(100000)
+    })
 
     // Log message to console
-    console.log(user1 + " said " + $("#say").val() + " to " + user2);
+    // console.log(user1 + " said " + $("#say").val() + " to " + user2);
+
     $("#say").val("");
 });
 
@@ -120,7 +124,7 @@ function Li(say, id) {
     let li =
         $("#" + id).get(0) ||
         // Add message to ul
-        $("<li>").attr("id", id).appendTo("ul#messages");
+        $("<li>").attr("id", id).prependTo("ul#messages");
     $(li).text(say);
 }
 
@@ -135,6 +139,7 @@ function Dropdown(item, id) {
 }
 
 let auth = function () {
+    
     // Set user1's name
     user1 = $("#alias").val();
 

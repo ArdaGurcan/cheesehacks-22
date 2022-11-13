@@ -216,8 +216,11 @@ background-color: rgba(0, 116, 116, 0.1) !important;
 }
 
 #messages {
+  display: flex;
+flex-direction: column-reverse;
   height: 70vh;
-  overflow: auto;
+  overflow-wrap: break-word;
+  overflow-y: auto;
   overscroll-behavior-y: contain;
 }
 
