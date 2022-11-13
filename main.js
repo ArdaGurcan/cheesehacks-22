@@ -230,7 +230,7 @@ function switchTo5(node) {
     $("img#profile-photo").on("click", function () {
         // console.log("asdasda");
         $("input#my_file").click();
-    });
+    });;
     // display friends
     $("#friends-list")[0].innerHTML = "";
     $("#friends-list")[0].innerHTML += '<p class="title">Friends:</p>';
