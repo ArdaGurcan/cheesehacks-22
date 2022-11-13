@@ -41,17 +41,32 @@ $("#msg").hide();
 
 // On sign up
 $("#up").on("click", function (e) {
-    // Create user with #alias as username and #pass as password
-    user.create($("#alias").val(), $("#pass").val(), (ack) => {
-        if (ack.ok === 0) {
-            addUser($("#alias").val());
-            console.log(
-                $("#alias").val() + ": " + $("#pass").val() + " signed up"
-            );
-        } else {
-            $("#error").text(ack.err);
+    // sanitize username inputs
+    var valid = true;
+    var username = $("#alias").val();
+    var validChars = 'abcdefghijklmnopqrstuvwxyz0123456789_-';
+    for(let char in username.toLowerCase()) {
+        if(validChars.indexOf(char.toLowerCase()) == -1) {
+            valid == false;
+            return;
         }
-    });
+    };
+        
+
+    // Create user with #alias as username and #pass as password
+    if(valid) {
+        user.create($("#alias").val(), $("#pass").val(), (ack) => {
+            if (ack.ok === 0) {
+                addUser($("#alias").val());
+                console.log(
+                    $("#alias").val() + ": " + $("#pass").val() + " signed up"
+                );
+            } else {
+                $("#error").text(ack.err);
+            }
+        });
+    }
+    
 
     // console.log
     // Log sign-up to console
