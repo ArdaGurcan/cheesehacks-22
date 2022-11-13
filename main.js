@@ -1,3 +1,4 @@
+
 // Define gun instance
 let gun = Gun([
     "http://77.68.15.151:1234/gun",
@@ -14,7 +15,7 @@ let authenticated = false;
 
 let channelName = null;
 
-function readURL(input) {
+function readURL(input, name) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -22,6 +23,7 @@ function readURL(input) {
             $("#profile-photo").attr("src", e.target.result);
             // .width(200)
             // .height(200);
+            updatePfp(name, e.target.result)
             console.log(e.target.result);
         };
 
@@ -221,7 +223,7 @@ function switchTo5(node) {
         '<figure id="profile-picture" class="image">' +
         '<img class="is-rounded" id="profile-photo"' +
         'src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU">' +
-        '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(this);" style="display:none"></figure>';
+        '<br><input type="file" id="my_file" accept="image/*" onchange="readURL(' + node + ', this);" style="display:none"></figure>';
 
     $("#profile")[0].innerHTML +=
         '<p id="profile-name" class="title text-c" style="padding-top: 40;">' +
