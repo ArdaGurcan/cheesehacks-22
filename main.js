@@ -138,7 +138,7 @@ let auth = function () {
 
     authenticated = true;
 
-    addFriendButtons();
+    getSearchResults();
 };
 // On authenticated (all cosmetics)
 gun.on("auth", auth);
@@ -194,7 +194,7 @@ function hideAll() {
     $("#tab-4-content").addClass("is-hidden");
 }
 
-function addFriendButtons() {
+function getSearchResults() {
     // reset results 
     $(".results")[0].innerHTML = ""
 
