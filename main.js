@@ -190,6 +190,7 @@ function hideAll() {
 }
 
 function addFriendButtons() {
+    $(".results")[0].innerHTML = ""
     nodes.forEach(function (node) {
         if (user1 !== node.name)
             getFriends(user1).then((e) => {
@@ -202,7 +203,7 @@ function addFriendButtons() {
                     user1 +
                     '","' +
                     node.name +
-                    '")' +
+                    '").then(()=>{addFriendButtons()})' +
                     (alreadyFriends ? " disabled" : "") +
                     ">" +
                     '<span class="icon is-medium"><i class="fa fa-' +

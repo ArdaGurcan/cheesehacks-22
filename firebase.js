@@ -90,10 +90,10 @@ async function getFriends(name) {
   return friends
 }
 
-function addFriend(name, friend) {
+async function addFriend(name, friend) {
   let id = ""
   let friends = []
-  getDocs(userRef)
+  await getDocs(userRef)
     .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
       if(doc.data().name == name) {
