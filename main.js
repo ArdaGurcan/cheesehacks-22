@@ -195,28 +195,56 @@ function hideAll() {
 }
 
 function addFriendButtons() {
-    $(".results")[0].innerHTML = "";
-    nodes.forEach(function (node) {
-        var filtered = filter != null && node.name.toUpperCase().indexOf(filter) == -1
-        if (user1 !== node.name && !filtered)
-            getFriends(user1).then((friends) => {
-                let alreadyFriends = friends.indexOf(node.name) != -1;
+    // reset results 
+    $(".results")[0].innerHTML = ""
 
-                $(".results")[0].innerHTML +=
-                    '<div class="box result">' +
-                    '<button class="add-friend is-info button is-right"' +
-                    "onclick='addFriend(\"" +
-                    user1 +
-                    '","' +
-                    node.name +
-                    "\").then(()=>{addFriendButtons(); auth();})'" +
-                    (alreadyFriends ? " disabled" : "") +
-                    ">" +
-                    '<span class="icon is-medium"><i class="fa fa-' +
-                    (alreadyFriends ? "check-circle" : "plus-circle") +
-                    '"></i></span></button>' +
-                    node.name +
-                    "</div>";
-            });
-    });
+    // get filter phrase from search bar
+    var filter = $("#friend_search").val().toUpperCase()
+
+    // filter and bucketize by (starts with filter), (contains filter)
+    var startsWithFilter = []
+    var containsFilter = []
+    nodes.forEach(function (node) {
+        if(filter != null) {
+            var filterIndex = node.name.toUpperCase().indexOf(filter)
+            if(filterIndex == 0) {
+                startsWithFilter.push(node)
+            }
+            else if(filterIndex > -1) {
+                containsFilter.push(node)
+            }
+        }
+    })
+
+
+    // create buttons
+    startsWithFilter.forEach(function (node) {
+        createFriendButton(node)
+    })
+    containsFilter.forEach(function (node) {
+        createFriendButton(node)
+    })
+}
+
+function createFriendButton(node) {
+    if (user1 !== node.name)
+        getFriends(user1).then((friends) => {
+            let alreadyFriends = friends.indexOf(node.name) != -1;
+
+            $(".results")[0].innerHTML +=
+                '<div class="box result">' +
+                '<button class="add-friend is-info button is-right"' +
+                'onclick=\'addFriend(\"' +
+                user1 +
+                '","' +
+                node.name +
+                '\").then(()=>{addFriendButtons()})\'' +
+                (alreadyFriends ? " disabled" : "") +
+                ">" +
+                '<span class="icon is-medium"><i class="fa fa-' +
+                (alreadyFriends ? "check-circle" : "plus-circle") +
+                '"></i></span></button>' +
+                node.name +
+                "</div>";
+        });
 }
