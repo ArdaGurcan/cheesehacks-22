@@ -89,8 +89,7 @@ $("#receiver").change(function (e) {
 
     // Pull up all messages in channel
     $("ul#messages")[0].innerHTML = "";
-    gun.get(channelName).map().once(Li)
-
+    gun.get(channelName).map().once(Li);
 });
 
 // On message sent
@@ -103,10 +102,11 @@ $("#said").on("submit", function (e) {
 
     // Add message to channel
     console.log(channelName);
-    gun.get(channelName).set(user1 + ": " + $("#say").val()).then(()=>{
-
-        $("#messages").scrollTop(100000)
-    })
+    gun.get(channelName)
+        .set(user1 + ": " + $("#say").val())
+        .then(() => {
+            $("#messages").scrollTop(100000);
+        });
 
     // Log message to console
     // console.log(user1 + " said " + $("#say").val() + " to " + user2);
@@ -139,7 +139,6 @@ function Dropdown(item, id) {
 }
 
 let auth = function () {
-    
     // Set user1's name
     user1 = $("#alias").val();
 
@@ -228,18 +227,16 @@ function switchTo5(node) {
     // display profile
 
     getPfp(node).then((e) => {
-
         // $("#profile")[0].innerHTML = "";
         $("#profile")[0].innerHTML =
             '<figure id="profile-picture" class="image">' +
             '<img class="is-rounded" id="profile-photo" ' +
             'src="' +
             e +
-        // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU" +
-        '">' +
-            '<input type="file" id="my_file" accept="image/*" '+
-            
-            'onchange="readURL(this, \'' +
+            // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTEzd3dE5wNySrKqklMiO4vtmpCAwvf2AeQ&usqp=CAU" +
+            '">' +
+            '<input type="file" id="my_file" accept="image/*" ' +
+            "onchange=\"readURL(this, '" +
             node +
             "');\" " +
             'style="display:none"' +
@@ -333,7 +330,7 @@ function createFriendButton(node) {
                 user1 +
                 '","' +
                 node +
-                "\").then(()=>{createFriendButton()})'" +
+                "\");disableButton(this)'" +
                 (alreadyFriends ? " disabled" : "") +
                 ">" +
                 '<span class="icon is-medium"><i class="fa fa-' +
@@ -342,4 +339,13 @@ function createFriendButton(node) {
                 node +
                 "</div>";
         });
+}
+
+function disableButton(btn) {
+    console.log(btn);
+    btn.setAttribute("disabled", "true");
+    btn.innerHTML =
+        '<span class="icon is-medium"><i class="fa fa-' +
+        "check-circle" +
+        '"></i></span>';
 }
