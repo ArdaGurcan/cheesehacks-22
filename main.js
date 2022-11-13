@@ -1,4 +1,3 @@
-const { update } = require("js13k-ecs");
 
 // Define gun instance
 let gun = Gun([
