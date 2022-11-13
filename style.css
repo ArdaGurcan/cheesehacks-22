@@ -87,10 +87,10 @@ body {
   border-width: 0;
   background-size: 600% 100% !important;
 
-  moz-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  moz-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  transition: all .6s ease-in-out;
 }
 
 /* .button:hover {
@@ -109,10 +109,10 @@ h1 {
 
   background-size: 600% 100% !important;
 
-  moz-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  moz-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  transition: all .6s ease-in-out;
   background: linear-gradient(var(--fg-gradient));
   background: -moz-linear-gradient(var(--fg-gradient));
   background: -webkit-linear-gradient(var(--fg-gradient));
@@ -185,10 +185,10 @@ background-color: rgba(0, 116, 116, 0.1) !important;
 .button:hover , .tab-icon>i:hover {
   color: whitesmoke;
   background-position: 100% 0;
-  moz-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  moz-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  transition: all .6s ease-in-out;
 }
 
 #sign{
