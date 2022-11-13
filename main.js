@@ -286,6 +286,9 @@ function switchTo5(node) {
             $("input#my_file").click();
         });
     });
+
+    window.getPfp() = getPfp;
+
     // display friends
     $("#friends-list")[0].innerHTML = "";
     $("#friends-list")[0].innerHTML += '<p class="title">Friends:</p>';

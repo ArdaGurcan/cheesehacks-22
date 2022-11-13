@@ -5,10 +5,11 @@ import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 import { addEquivalentTransforms, fromLonLat, toLonLat } from "ol/proj";
 import Geolocation from "ol/Geolocation";
 import Text from "ol/style/Text";
-import { Circle, Fill, Style } from "ol/style";
+import { Icon, Fill, Style } from "ol/style";
 import { createOrUpdateFromCoordinates } from "ol/extent";
 
 import getFriendCoordinates from "/firebase.js";
+// import { getDepOptimizationConfig } from "vite";
 // import updateCoordinates from "/firebase.js";
 
 let map;
@@ -34,20 +35,22 @@ window.ready = () => {
 
         const proj = view.getProjection();
 
-        function styleFriend(name) {
-            return new Style({
-                image: new Circle({
-                    radius: 9,
-                    fill: new Fill({
-                        color: "red",
-                    }),
+        async function styleFriend(name) {
+          let style = null;
+          await getPfp(name).then((img) => {
+            console.log(img);
+            style = new Style({
+                image: new Icon({
+                  src: img
                 }),
                 text: new Text({
                     text: name,
                     offsetY: 15,
                 }),
-            });
-        }
+            })
+          })
+          return style;
+        };
 
         // returns a VectorSource with all the friends on it
         function drawFriends(friends) {
@@ -61,7 +64,9 @@ window.ready = () => {
                         )
                     )
                 );
-                feature.setStyle(styleFriend(friends[f]["name"]));
+                styleFriend(friends[f]["name"]).then((style) => {
+                  feature.setStyle(style);
+                })
                 vectorsource.addFeature(feature);
               
             }
