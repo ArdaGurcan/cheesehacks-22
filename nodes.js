@@ -76,13 +76,13 @@ function getNodeColor(node, neighbors) {
 }
 
 function getLinkColor(node, link) {
-    return isNeighborLink(node, link) ? "green" : "#E5E5E5";
+    return isNeighborLink(node, link) ? "#ddd" : "#1c1b22";
 }
 
 function getTextColor(node, neighbors) {
     return Array.isArray(neighbors) && neighbors.indexOf(node.name) > -1
-        ? "green"
-        : "black";
+        ? "#fff"
+        : "#bbb";
 }
 
 var svg = d3.select("svg");
@@ -99,13 +99,13 @@ var linkForce = d3
         return link.name;
     })
     .strength(function (link) {
-        return link.strength;
+        return link.strength*10;
     });
 
 var simulation = d3
     .forceSimulation()
     .force("link", linkForce)
-    .force("charge", d3.forceManyBody().strength(-220))
+    .force("charge", d3.forceManyBody().strength(-1500))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
 var dragDrop = d3
@@ -178,7 +178,7 @@ var linkElements = svg
     .enter()
     .append("line")
     .attr("stroke-width", 1)
-    .attr("stroke", "rgba(50, 50, 50, 0.2)");
+    .attr("stroke", "rgba(50, 50, 50, 1)");
 
 var textElements = svg
     .append("g")
@@ -189,7 +189,7 @@ var textElements = svg
     .append("text")
     .text(function (node) {
         return node.name;
-    })
+    }).attr("fill", '#bbb')
     .attr("font-size", 15)
     .attr("dx", 15)
     .attr("dy", 4);
@@ -231,7 +231,7 @@ function init (){
     .enter()
     .append("line")
     .attr("stroke-width", 1)
-    .attr("stroke", "rgba(50, 50, 50, 0.2)");
+    .attr("stroke", "#2d2d37");
 
  textElements = svg
     .append("g")
@@ -243,6 +243,9 @@ function init (){
     .text(function (node) {
         return node.name;
     })
+    // .attr("color", "#bbb")
+    // .attr("stroke", "#bbb")
+    .attr("fill", "#bbb")
     .attr("font-size", 15)
     .attr("dx", 15)
     .attr("dy", 4);
@@ -282,13 +285,13 @@ function init (){
         return link.name;
     })
     .strength(function (link) {
-        return link.strength;
+        return 0.1;
     });
     
     simulation = d3
     .forceSimulation()
     .force("link", linkForce)
-    .force("charge", d3.forceManyBody().strength(-220))
+    .force("charge", d3.forceManyBody().strength(-1500))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
     dragDrop = d3

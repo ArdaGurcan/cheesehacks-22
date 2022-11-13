@@ -293,12 +293,12 @@ function switchTo5(node) {
         console.log(friends);
         friends.forEach(function (friend) {
             $("#friends-list")[0].innerHTML +=
-                '<button class="button is-info"' +
+                '<h1 class="friend"' +
                 "onclick='switchTo5(\"" +
                 friend +
                 "\")'>" +
                 friend +
-                "</button><br>";
+                "</h1>";
             // '<p class="subtitle">' + friend + '</p>';
         });
     });

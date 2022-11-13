@@ -36,6 +36,9 @@
   color: #ddd !important;
 }
 
+.notification.is-info {
+  color: #ddd !important;
+}
 #tabs-with-content .tabs:not(:last-child) {
   margin-bottom: 0;
 }
@@ -47,6 +50,7 @@
 
 #tabs-with-content .tab-content.is-active {
   display: block;
+
 }
 
 .is-large>.fa {
@@ -60,7 +64,29 @@ section {
 }
 
 .tile.is-parent {
-  padding: 0 !important;
+  padding: 0;
+
+}
+
+div.tile.is-parent>article>div>p,
+#rh {
+  color: #ddd !important;
+}
+
+.tile.is-parent>article {
+  padding: calc(1.75rem - 2px) !important;
+  border-color: #2d2d37;
+  border-width: 5px;
+  box-shadow: inset 0px 0px 0px 1px #2d2d37 !important;
+  -webkit-box-shadow: inset 0px 0px 0px 1px #2d2d37;
+  -moz-box-shadow: inset 0px 0px 0px 1px #2d2d37;
+  background-color: #1c1b22 !important;
+}
+
+#msg>div.tile.is-parent>article,
+#profile {
+  background-color: #2d2d37 !important;
+
 }
 
 .tile {
@@ -68,7 +94,7 @@ section {
   border-radius: 0 !important;
 }
 
-body {
+*/ body {
 
   background-color: black;
 
@@ -107,18 +133,25 @@ hero.is-light .tabs a {
 
 } */
 
-article {
+/* article {
   margin: 100px;
-}
+} */
 
 #friend_search,
 #tab-2-content>div.field.has-addons.search>div:nth-child(2),
-#alias, #pass, #sign > div:nth-child(2) > p.control.has-icons-left {
+#alias,
+#pass,
+#sign>div:nth-child(2)>p.control.has-icons-left,
+#say {
   background-color: #2d2d37 !important;
   color: #ddd !important;
   border: none;
 }
 
+::placeholder {
+  color: rgba(221, 221, 221, 0.192) !important;
+
+}
 
 
 #tab-2-content>div.field.has-addons.search>div:nth-child(2) {
@@ -136,22 +169,37 @@ article {
   background-repeat: no-repeat !important;
 }
 
-#in {
+#in.button.is-primary
+{
   background: linear-gradient(var(--fg-gradient));
   background-repeat: no-repeat !important;
   background: -moz-linear-gradient(var(--fg-gradient));
   background: -webkit-linear-gradient(var(--fg-gradient));
   background-size: 210% 100% !important;
+  color: #1c1b22 !important
 
 }
 
-#up {
+
+.ol-zoom-out, .ol-zoom-in {
+  background-color: #0f0e12 !important;
+  color: #ddd !important;
+  /* border-color: #1c1b22 !important; */
+
+}
+
+#up.button.is-primary {
   background: linear-gradient(var(--fg-gradient));
   background-repeat: no-repeat !important;
   background: -moz-linear-gradient(var(--fg-gradient));
   background: -webkit-linear-gradient(var(--fg-gradient));
   background-size: 210% 100% !important;
   background-position: 100% 0;
+  color: #1c1b22 !important
+}
+
+#speak > span.icon.is-medium > i.fa.fa-paper-plane {
+  color:#2d2d37 !important
 }
 
 .search {
@@ -178,12 +226,14 @@ article {
   transition: all .6s ease-in-out;
 }
 
-#panel-person-name, #person-panel > div {
+#panel-person-name,
+#person-panel>div {
   background-color: #1c1b22;
   border-color: #2d2d37;
   color: #ddd;
 }
-#person-panel > div{
+
+#person-panel>div {
 
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -283,6 +333,11 @@ section {
 
 } */
 
+#user2>option, #profile-name {
+  color: #ddd !important;
+
+}
+
 .select select {
   max-width: 100%;
   width: 200%
@@ -295,8 +350,19 @@ select .select:hover {
 
 }
 
-select .select option:checked {
+#user2>option:checked {
+  color: #2d2d37 !important;
+  background-color: #ddd;
+  accent-color: transparent;
+}
+
+select .select option:focus {
   background-color: rgba(0, 116, 116, 0.1) !important;
+  color: #2d2d37 !important;
+}
+
+select option {
+  border-radius: 200px;
 }
 
 .select:focus,
@@ -327,11 +393,31 @@ form#said {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
-  height: 60%;
+  /* height: 60%; */
   width: 60%;
   cursor: copy;
 }
 
+.friend {
+  background: linear-gradient(var(--fg-gradient));
+  background: -moz-linear-gradient(var(--fg-gradient));
+  background: -webkit-linear-gradient(var(--fg-gradient));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: x-large !important;
+  margin-left: 1rem;
+  margin-top: 0 !important;
+  cursor: pointer
+}
+
+#friends-list > p {
+  margin-bottom: 1rem;
+}
+
+#friends-list {
+ margin-top: 2.5rem;
+ margin-left: 2rem;
+}
 /* #profile-photo {
   width: auto;
   aspect-ratio: 1/1;
