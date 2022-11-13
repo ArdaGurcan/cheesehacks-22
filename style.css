@@ -142,3 +142,29 @@ section {
   width: 100%;
   height: calc(100% - 4.75rem);
 }
+
+/* .select, select.select {
+  width: 100%;
+  max-width: 200%;
+
+} */
+
+.select select {
+  max-width: 100%;
+  width: 200%
+}
+
+.select select, select .select:hover {
+  border-color: transparent !important;
+background-color: rgba(0, 0, 0, 0) !important;
+
+}
+
+select .select option:checked {
+background-color: rgba(0, 116, 116, 0.1) !important;
+}
+
+.select:focus, .select:active  {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
