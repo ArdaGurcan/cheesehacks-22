@@ -6,6 +6,26 @@
 
 }
 
+#login-logo {
+  justify-content: center;
+  margin-top: -100%;
+  margin-bottom: 30%;
+  text-align: center;
+}
+
+#sign {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 10%;
+  width: 30%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  padding: 20% 10%;
+  background-color: green;
+  border-radius: 2rem;
+}
+
 #tabs-with-content .tabs:not(:last-child) {
   margin-bottom: 0;
 }
@@ -30,7 +50,7 @@ section {
 }
 
 .tile.is-parent {
-  padding: 0 !important; 
+  padding: 0 !important;
 }
 .tile {
 
